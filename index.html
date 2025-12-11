@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>แบบสอบถามความพึงพอใจ</title>
+    
+    <!--<link rel="stylesheet" href="cdn.jsdelivr.net"> -->
+    <link rel="stylesheet" href="cdnjs.cloudflare.com">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -28,7 +31,7 @@
         }
         h2 {
             color: #333;
-            border-bottom: 2px solid #007bff;
+            border-bottom: 2px solid #ff0000;
             padding-bottom: 10px;
             margin-bottom: 20px;
         }
@@ -37,11 +40,11 @@
             margin-bottom: 8px;
             font-weight: bold;
         }
-        .radio-options label {
+        /*.radio-options label {
             display: inline-block;
             margin-right: 20px;
             font-weight: normal;
-        }
+        }*/
         textarea {
             width: 100%;
             padding: 10px;
@@ -51,7 +54,7 @@
             box-sizing: border-box;
         }
         button {
-            background-color: #007bff;
+            background-color: #ff0000;
             color: white;
             padding: 12px 20px;
             border: none;
@@ -61,7 +64,38 @@
             margin-top: 20px;
         }
         button:hover {
-            background-color: #0056b3;
+            background-color: #a70000;
+        }
+
+         /* 1. ซ่อน input จริงๆ */
+        .emoji-radio input[type="radio"] {
+            display: none; 
+        }
+
+        /* 2. จัดสไตล์ให้กับ Label (ตัวอีโมจิ) */
+        .emoji-radio label {
+            cursor: pointer;
+            padding: 10px 15px; /* เพิ่ม padding ด้านข้างเล็กน้อย */
+            margin: 5px;
+            border: 1px solid #ccc;
+            border-radius: 50px; /* ทำให้เป็นวงกลมหรือเม็ดยา */
+            display: inline-block;
+            background-color: #f9f9f9;
+            transition: background-color 0.3s; /* เพิ่ม transition ให้ดูนุ่มนวล */
+        }
+
+        /* 3. สไตล์เมื่อเลือกแล้ว */
+        /* เมื่อ input ถูกเลือก ให้เปลี่ยนสไตล์ของ label ที่ตามหลังมาทันที (+) */
+        .emoji-radio input[type="radio"]:checked + label {
+            background-color: #e1d1d1; /* เปลี่ยนสีพื้นหลังเมื่อเลือก */
+            border-color: #a70000;
+            /* คุณอาจจะไม่ต้องเปลี่ยนสีอีโมจิ เพราะมันมีสีในตัวอยู่แล้ว */
+        }
+
+        /* สไตล์เพิ่มเติมสำหรับขนาดอีโมจิ */
+        .emoji {
+            font-size: 24px; 
+            vertical-align: middle;
         }
     </style>
 </head>
@@ -80,67 +114,157 @@
             </div>
             <div class="question-group">
                 <p><strong>Q1) Overall quality of product & service</strong></p>
-                <div class="radio-options">
-                    <label><input type="radio" name="entry.3997204" value="1" required> 1. Very Satisfied</label>
-                    <label><input type="radio" name="entry.3997204" value="2"> 2. Satisfied</label>
-                    <label><input type="radio" name="entry.3997204" value="3"> 3. Neither satisfied</label>
-                    <label><input type="radio" name="entry.3997204" value="4"> 4. Dissatisfied</label>
-                    <label><input type="radio" name="entry.3997204" value="5"> 5. Very dissatisfied</label>
+                <div class="emoji-radio">
+                    <input type="radio" id="q1_emoji_1" name="entry.3997204" value="1" required>
+                    <label for="q1_emoji_1">
+                        <span class="emoji">😍</span> Very Satisfied
+                    </label>
+                    <input type="radio" id="q1_emoji_2" name="entry.3997204" value="2">
+                    <label for="q1_emoji_2">
+                        <span class="emoji">😀</span> Satisfied
+                    </label>
+                    <input type="radio" id="q1_emoji_3" name="entry.3997204" value="3">
+                    <label for="q1_emoji_3">
+                        <span class="emoji">😐</span> Neither satisfied
+                    </label>
+                    <input type="radio" id="q1_emoji_4" name="entry.3997204" value="4">
+                    <label for="q1_emoji_4">
+                        <span class="emoji">😟</span> Dissatisfied
+                    </label>
+                    <input type="radio" id="q1_emoji_5" name="entry.3997204" value="5">
+                    <label for="q1_emoji_5">
+                        <span class="emoji">😡</span> Very dissatisfied
+                    </label>
                 </div>
             </div>
             
             <div class="question-group">
                 <p><strong>Q2) Client service team</strong></p>
-                <div class="radio-options">
-                    <label><input type="radio" name="entry.77707608" value="1" required> 1. Very Satisfied</label>
-                    <label><input type="radio" name="entry.77707608" value="2"> 2. Satisfied</label>
-                    <label><input type="radio" name="entry.77707608" value="3"> 3. Neither satisfied</label>
-                    <label><input type="radio" name="entry.77707608" value="4"> 4. Dissatisfied</label>
-                    <label><input type="radio" name="entry.77707608" value="5"> 5. Very dissatisfied</label>
+                <div class="emoji-radio">
+                    <input type="radio" id="q2_emoji_1" name="entry.77707608" value="1" required>
+                    <label for="q2_emoji_1">
+                        <span class="emoji">😍</span> Very Satisfied
+                    </label>
+                    <input type="radio" id="q2_emoji_2" name="entry.77707608" value="2">
+                    <label for="q2_emoji_2">
+                        <span class="emoji">😀</span> Satisfied
+                    </label>
+                    <input type="radio" id="q2_emoji_3" name="entry.77707608" value="3">
+                    <label for="q2_emoji_3">
+                        <span class="emoji">😐</span> Neither satisfied
+                    </label>
+                    <input type="radio" id="q2_emoji_4" name="entry.77707608" value="4">
+                    <label for="q2_emoji_4">
+                        <span class="emoji">😟</span> Dissatisfied
+                    </label>
+                    <input type="radio" id="q2_emoji_5" name="entry.77707608" value="5">
+                    <label for="q2_emoji_5">
+                        <span class="emoji">😡</span> Very dissatisfied
+                    </label>
                 </div>
             </div>
 
             <div class="question-group">
                 <p><strong>Q3) Timeliness - no unreasonable delay</strong></p>
-                <div class="radio-options">
-                    <label><input type="radio" name="entry.1355562660" value="1" required> 1. Very Satisfied</label>
-                    <label><input type="radio" name="entry.1355562660" value="2"> 2. Satisfied</label>
-                    <label><input type="radio" name="entry.1355562660" value="3"> 3. Neither satisfied</label>
-                    <label><input type="radio" name="entry.1355562660" value="4"> 4. Dissatisfied</label>
-                    <label><input type="radio" name="entry.1355562660" value="5"> 5. Very dissatisfied</label>
+                <div class="emoji-radio">
+                    <input type="radio" id="q3_emoji_1" name="entry.1355562660" value="1" required>
+                    <label for="q3_emoji_1">
+                        <span class="emoji">😍</span> Very Satisfied
+                    </label>
+                    <input type="radio" id="q3_emoji_2" name="entry.1355562660" value="2">
+                    <label for="q3_emoji_2">
+                        <span class="emoji">😀</span> Satisfied
+                    </label>
+                    <input type="radio" id="q3_emoji_3" name="entry.1355562660" value="3">
+                    <label for="q3_emoji_3">
+                        <span class="emoji">😐</span> Neither satisfied
+                    </label>
+                    <input type="radio" id="q3_emoji_4" name="entry.1355562660" value="4">
+                    <label for="q3_emoji_4">
+                        <span class="emoji">😟</span> Dissatisfied
+                    </label>
+                    <input type="radio" id="q3_emoji_5" name="entry.1355562660" value="5">
+                    <label for="q3_emoji_5">
+                        <span class="emoji">😡</span> Very dissatisfied
+                    </label>
                 </div>
             </div>
             
-            <div class="question-group">
+            <div class="question-group" id="q4">
                 <p><strong>Q4) Accuracy of data file</strong></p>
-                <div class="radio-options">
-                    <label><input type="radio" name="entry.1430791495" value="1" required> 1. Very Satisfied</label>
-                    <label><input type="radio" name="entry.1430791495" value="2"> 2. Satisfied</label>
-                    <label><input type="radio" name="entry.1430791495" value="3"> 3. Neither satisfied</label>
-                    <label><input type="radio" name="entry.1430791495" value="4"> 4. Dissatisfied</label>
-                    <label><input type="radio" name="entry.1430791495" value="5"> 5. Very dissatisfied</label>
+                <div class="emoji-radio">
+                    <input type="radio" id="q4_emoji_1" name="entry.1430791495" value="1">
+                    <label for="q4_emoji_1">
+                        <span class="emoji">😍</span> Very Satisfied
+                    </label>
+                    <input type="radio" id="q4_emoji_2" name="entry.1430791495" value="2">
+                    <label for="q4_emoji_2">
+                        <span class="emoji">😀</span> Satisfied
+                    </label>
+                    <input type="radio" id="q4_emoji_3" name="entry.1430791495" value="3">
+                    <label for="q4_emoji_3">
+                        <span class="emoji">😐</span> Neither satisfied
+                    </label>
+                    <input type="radio" id="q4_emoji_4" name="entry.1430791495" value="4">
+                    <label for="q4_emoji_4">
+                        <span class="emoji">😟</span> Dissatisfied
+                    </label>
+                    <input type="radio" id="q4_emoji_5" name="entry.1430791495" value="5">
+                    <label for="q4_emoji_5">
+                        <span class="emoji">😡</span> Very dissatisfied
+                    </label>
                 </div>
             </div>
 
-            <div class="question-group">
+            <div class="question-group" id="q5">
                 <p><strong>Q5) Actionable results</strong></p>
-                <div class="radio-options">
-                    <label><input type="radio" name="entry.228333784" value="1" required> 1. Very Satisfied</label>
-                    <label><input type="radio" name="entry.228333784" value="2"> 2. Satisfied</label>
-                    <label><input type="radio" name="entry.228333784" value="3"> 3. Neither satisfied</label>
-                    <label><input type="radio" name="entry.228333784" value="4"> 4. Dissatisfied</label>
-                    <label><input type="radio" name="entry.228333784" value="5"> 5. Very dissatisfied</label>
+                <div class="emoji-radio">
+                    <input type="radio" id="q5_emoji_1" name="entry.228333784" value="1">
+                    <label for="q5_emoji_1">
+                        <span class="emoji">😍</span> Very Satisfied
+                    </label>
+                    <input type="radio" id="q5_emoji_2" name="entry.228333784" value="2">
+                    <label for="q5_emoji_2">
+                        <span class="emoji">😀</span> Satisfied
+                    </label>
+                    <input type="radio" id="q5_emoji_3" name="entry.228333784" value="3">
+                    <label for="q5_emoji_3">
+                        <span class="emoji">😐</span> Neither satisfied
+                    </label>
+                    <input type="radio" id="q5_emoji_4" name="entry.228333784" value="4">
+                    <label for="q5_emoji_4">
+                        <span class="emoji">😟</span> Dissatisfied
+                    </label>
+                    <input type="radio" id="q5_emoji_5" name="entry.228333784" value="5">
+                    <label for="q5_emoji_5">
+                        <span class="emoji">😡</span> Very dissatisfied
+                    </label>
                 </div>
             </div>
 
-            <div class="question-group">
+            <div class="question-group" id="q6">
                 <p><strong>Q6) Presentation</strong></p>
-                <div class="radio-options">
-                    <label><input type="radio" name="entry.602056392" value="1" required> 1. Very Satisfied</label>
-                    <label><input type="radio" name="entry.602056392" value="2"> 2. Satisfied</label>
-                    <label><input type="radio" name="entry.602056392" value="3"> 3. Neither satisfied</label>
-                    <label><input type="radio" name="entry.602056392" value="4"> 4. Dissatisfied</label>
-                    <label><input type="radio" name="entry.602056392" value="5"> 5. Very dissatisfied</label>
+                <div class="emoji-radio">
+                    <input type="radio" id="q6_emoji_1" name="entry.602056392" value="1">
+                    <label for="q6_emoji_1">
+                        <span class="emoji">😍</span> Very Satisfied
+                    </label>
+                    <input type="radio" id="q6_emoji_2" name="entry.602056392" value="2">
+                    <label for="q6_emoji_2">
+                        <span class="emoji">😀</span> Satisfied
+                    </label>
+                    <input type="radio" id="q6_emoji_3" name="entry.602056392" value="3">
+                    <label for="q6_emoji_3">
+                        <span class="emoji">😐</span> Neither satisfied
+                    </label>
+                    <input type="radio" id="q6_emoji_4" name="entry.602056392" value="4">
+                    <label for="q6_emoji_4">
+                        <span class="emoji">😟</span> Dissatisfied
+                    </label>
+                    <input type="radio" id="q6_emoji_5" name="entry.602056392" value="5">
+                    <label for="q6_emoji_5">
+                        <span class="emoji">😡</span> Very dissatisfied
+                    </label>
                 </div>
             </div>
             
@@ -186,6 +310,16 @@
                     
                     // แทนที่ history state ปัจจุบันด้วย URL ที่สะอาด
                     history.replaceState(null, document.title, cleanUrl);
+                }
+
+                if(surveyType == "HOME_VISIT"){
+                    document.getElementById('q4').style.display = 'none';
+                    document.getElementById('q5').style.display = 'none';
+                    document.getElementById('q6').style.display = 'none';
+                }
+                else if(surveyType == "UP_TO_DATA"){
+                    document.getElementById('q5').style.display = 'none';
+                    document.getElementById('q6').style.display = 'none';
                 }
                 // ทางเลือก: หากต้องการให้ฟอร์ม submit อัตโนมัติเมื่อโหลดหน้าเสร็จ
                 // document.getElementById('googleForm').submit();
