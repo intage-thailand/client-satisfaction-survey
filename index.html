@@ -70,7 +70,7 @@
     <div class="survey-container">
         <h2>แบบสอบถามความพึงพอใจโครงการ</h2>
         
-        <form action="https://docs.google.com/forms/d/1W7kSgTZgT7LC_wWwyuvVgiUpMoncMNW3toE1SszbdlE/prefill" method="POST" id="googleForm">
+        <form action="https://docs.google.com/forms/d/e/1FAIpQLSfiHlQu_-ZBFTG0k8Rq5ge32bgQ1I_on3X8rKj02UopV7Oa9Q/formResponse" method="POST" id="googleForm">
             <div class="question-group">
                 <!-- get data parameter  -->
                 <input type="hidden" name="entry.1041271350" id="project_no_get">
@@ -162,30 +162,38 @@
             const surveyType = urlParams.get('survey_type');
             const employeeEmail = urlParams.get('employee_email');
 
-            // 2. กำหนดค่าที่ได้ให้กับช่อง input hidden ในฟอร์ม HTML
-            // *** และ ID ของ entry ใน input hidden ให้ตรงกับ Google Form ของคุณ
-            if (projectNo) {
-                document.getElementById('project_no_get').value = projectNo;
-            }
-            if (round) {
-                document.getElementById('round_get').value = round;
-            }
-            if (surveyType) {
-                document.getElementById('survey_type_get').value = surveyType;
-            }
-            if (employeeEmail) {
-                document.getElementById('employee_email_get').value = employeeEmail;
-            }
-            
-            if (window.history.replaceState) {
-                // สร้าง URL ใหม่ที่ไม่เหลือ query string (?...)
-                const cleanUrl = window.location.pathname + window.location.hash;
+             // ตรวจสอบว่ามี query parameters ที่ต้องใช้ส่งหรือไม่
+            if (window.location.search) {
+
+                // 2. กำหนดค่าที่ได้ให้กับช่อง input hidden ในฟอร์ม HTML
+                // *** และ ID ของ entry ใน input hidden ให้ตรงกับ Google Form ของคุณ
+                if (projectNo) {
+                    document.getElementById('project_no_get').value = projectNo;
+                }
+                if (round) {
+                    document.getElementById('round_get').value = round;
+                }
+                if (surveyType) {
+                    document.getElementById('survey_type_get').value = surveyType;
+                }
+                if (employeeEmail) {
+                    document.getElementById('employee_email_get').value = employeeEmail;
+                }
                 
-                // แทนที่ history state ปัจจุบันด้วย URL ที่สะอาด
-                history.replaceState(null, document.title, cleanUrl);
+                if (window.history.replaceState) {
+                    // สร้าง URL ใหม่ที่ไม่เหลือ query string (?...)
+                    const cleanUrl = window.location.pathname + window.location.hash;
+                    
+                    // แทนที่ history state ปัจจุบันด้วย URL ที่สะอาด
+                    history.replaceState(null, document.title, cleanUrl);
+                }
+                // ทางเลือก: หากต้องการให้ฟอร์ม submit อัตโนมัติเมื่อโหลดหน้าเสร็จ
+                // document.getElementById('googleForm').submit();
             }
-            // ทางเลือก: หากต้องการให้ฟอร์ม submit อัตโนมัติเมื่อโหลดหน้าเสร็จ
-            document.getElementById('googleForm').submit();
+             else {
+            // กรณีที่เปิดหน้าเว็บโดยไม่มีพารามิเตอร์
+            console.log("No parameters found in URL. Form not submitted automatically.");
+            }
         };
     </script>
     </div>
