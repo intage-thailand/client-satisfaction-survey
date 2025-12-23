@@ -8,102 +8,300 @@
     <!--<link rel="stylesheet" href="cdn.jsdelivr.net"> -->
     <link rel="stylesheet" href="cdnjs.cloudflare.com">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            padding: 20px;
-        }
-        .survey-container {
-            max-width: 800px;
-            margin: auto;
-            background: #fff;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .question-group {
-            margin-bottom: 25px;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 15px;
-        }
-        .question-group:last-child {
-            border-bottom: none;
-        }
-        h2 {
-            color: #333;
-            border-bottom: 2px solid #ff0000;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-        }
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-        }
-        /*.radio-options label {
-            display: inline-block;
-            margin-right: 20px;
-            font-weight: normal;
-        }*/
-        textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            min-height: 100px;
+        * {
+            margin: 0;
+            padding: 0;
             box-sizing: border-box;
         }
-        button {
-            background-color: #ff0000;
-            color: white;
-            padding: 12px 20px;
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #ffffff;
+            min-height: 100vh;
+            padding: 20px;
+            color: #000000;
+        }
+
+        .survey-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(102, 129, 146, 0.15);
+            overflow: hidden;
+            border-top: 5px solid rgb(217, 0, 0);
+        }
+
+        .survey-container img {
+            margin-bottom: 30px;
+            display: block;
+        }
+
+        h2 {
+            color: #000000;
+            font-size: 28px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        .progress-indicator {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            padding: 0 10px;
+        }
+
+        .progress-step {
+            flex: 1;
+            height: 4px;
+            background-color: #ecf0f1;
+            margin: 0 5px;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .progress-step.active {
+            background: rgb(217, 0, 0);
+            box-shadow: 0 2px 8px rgba(217, 0, 0, 0.4);
+        }
+
+        .question-group {
+            margin-bottom: 35px;
+            padding: 0;
             border: none;
-            border-radius: 4px;
-            cursor: pointer;
+        }
+
+        .question-group:last-child {
+            border-bottom: none;
+            margin-bottom: 25px;
+        }
+
+        .question-title {
             font-size: 16px;
-            margin-top: 20px;
-        }
-        button:hover {
-            background-color: #a70000;
+            font-weight: 600;
+            color: #000000;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
         }
 
-         /* 1. ซ่อน input จริงๆ */
+        .question-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgb(217, 0, 0);
+            color: white;
+            font-weight: bold;
+            margin-right: 12px;
+            font-size: 14px;
+        }
+
+        /* ซ่อน input จริงๆ */
         .emoji-radio input[type="radio"] {
-            display: none; 
+            display: none;
         }
 
-        /* 2. จัดสไตล์ให้กับ Label (ตัวอีโมจิ) */
+        /* จัดสไตล์ให้กับ Label (ตัวอีโมจิ) */
+        .emoji-radio {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            padding: 20px 0;
+        }
+
         .emoji-radio label {
             cursor: pointer;
-            padding: 10px 15px; /* เพิ่ม padding ด้านข้างเล็กน้อย */
-            margin: 5px;
-            border: 1px solid #ccc;
-            border-radius: 50px; /* ทำให้เป็นวงกลมหรือเม็ดยา */
-            display: inline-block;
-            background-color: #f9f9f9;
-            transition: background-color 0.3s; /* เพิ่ม transition ให้ดูนุ่มนวล */
+            padding: 18px 20px;
+            border: 2px solid #e8e8e8;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            background-color: #f8f9fa;
+            transition: all 0.3s ease;
+            min-width: 100px;
+            text-align: center;
+            font-size: 13px;
+            font-weight: 500;
+            color: #333333;
+            flex: 1;
+            min-width: 80px;
         }
 
-        /* 3. สไตล์เมื่อเลือกแล้ว */
-        /* เมื่อ input ถูกเลือก ให้เปลี่ยนสไตล์ของ label ที่ตามหลังมาทันที (+) */
+        .emoji-radio label:hover {
+            border-color: rgb(217, 0, 0);
+            background-color: #fff5f5;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(217, 0, 0, 0.2);
+        }
+
+        /* สไตล์เมื่อเลือกแล้ว */
         .emoji-radio input[type="radio"]:checked + label {
-            background-color: #e1d1d1; /* เปลี่ยนสีพื้นหลังเมื่อเลือก */
-            border-color: #a70000;
-            /* คุณอาจจะไม่ต้องเปลี่ยนสีอีโมจิ เพราะมันมีสีในตัวอยู่แล้ว */
+            background: rgb(217, 0, 0);
+            border-color: rgb(217, 0, 0);
+            color: white;
+            font-weight: 600;
+            box-shadow: 0 8px 20px rgba(217, 0, 0, 0.4);
+            transform: scale(1.05);
         }
 
-        /* สไตล์เพิ่มเติมสำหรับขนาดอีโมจิ */
+        /* สไตล์สำหรับขนาดอีโmoจิ */
         .emoji {
-            font-size: 24px; 
-            vertical-align: middle;
+            font-size: 32px;
+            line-height: 1;
+        }
+
+        label[for^="suggestion"],
+        label[for^="suggestion"]::after {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #000000;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e8e8e8;
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 14px;
+            min-height: 120px;
+            resize: vertical;
+            transition: all 0.3s ease;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: rgb(217, 0, 0);
+            box-shadow: 0 0 0 3px rgba(217, 0, 0, 0.1);
+        }
+
+        textarea::placeholder {
+            color: #bdc3c7;
+        }
+
+        button {
+            width: 100%;
+            background: rgb(217, 0, 0);
+            color: white;
+            padding: 16px 20px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: 600;
+            margin-top: 30px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(217, 0, 0, 0.3);
+        }
+
+        button:hover {
+            background: rgb(180, 0, 0);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(217, 0, 0, 0.5);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .survey-container {
+                padding: 25px;
+            }
+
+            h2 {
+                font-size: 24px;
+            }
+
+            .emoji-radio {
+                gap: 10px;
+            }
+
+            .emoji-radio label {
+                padding: 15px 12px;
+                font-size: 12px;
+                min-width: 70px;
+            }
+
+            .emoji {
+                font-size: 28px;
+            }
+
+            .question-number {
+                width: 28px;
+                height: 28px;
+                font-size: 12px;
+            }
+
+            button {
+                font-size: 16px;
+                padding: 14px 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .survey-container {
+                padding: 20px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+
+            .emoji-radio {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 10px;
+            }
+
+            .emoji-radio label {
+                flex-direction: row;
+                padding: 14px;
+                min-width: unset;
+                justify-content: center;
+                gap: 12px;
+            }
+
+            .emoji {
+                font-size: 26px;
+            }
+        }
+
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            background-color: #d4edda;
+            color: #155724;
+            border-radius: 8px;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
 
     <div class="survey-container">
-        <img src="https://raw.githubusercontent.com/intage-thailand/client-satisfaction-survey/refs/heads/main/images/intage_logo.webp" style="width: 200px; height: inherit;" alt="INTAGE logo">
+        <img src="https://raw.githubusercontent.com/intage-thailand/client-satisfaction-survey/refs/heads/main/images/intage_logo.webp" style="width: 200px; height: auto;" alt="INTAGE logo">
         <h2>แบบสอบถามความพึงพอใจโครงการ</h2>
+        <p class="subtitle">ขอบคุณที่สละเวลาให้ข้อมูลอันมีค่า</p>
+        
+        <div class="progress-indicator" id="progressIndicator"></div>
         
         <form action="https://docs.google.com/forms/d/e/1FAIpQLSfiHlQu_-ZBFTG0k8Rq5ge32bgQ1I_on3X8rKj02UopV7Oa9Q/formResponse" method="POST" id="googleForm">
             <div class="question-group">
@@ -114,7 +312,7 @@
                 <input type="hidden" name="entry.1684685543" id="employee_email_get">
             </div>
             <div class="question-group">
-                <p><strong>Q1) Overall quality of product & service</strong></p>
+                <p class="question-title"><span class="question-number">1</span>Overall quality of product & service</p>
                 <div class="emoji-radio">
                     <input type="radio" id="q1_emoji_1" name="entry.3997204" value="1" required>
                     <label for="q1_emoji_1">
@@ -126,7 +324,7 @@
                     </label>
                     <input type="radio" id="q1_emoji_3" name="entry.3997204" value="3">
                     <label for="q1_emoji_3">
-                        <span class="emoji">😐</span> Neither satisfied
+                        <span class="emoji">😐</span> Neither
                     </label>
                     <input type="radio" id="q1_emoji_4" name="entry.3997204" value="4">
                     <label for="q1_emoji_4">
@@ -134,13 +332,13 @@
                     </label>
                     <input type="radio" id="q1_emoji_5" name="entry.3997204" value="5">
                     <label for="q1_emoji_5">
-                        <span class="emoji">😡</span> Very dissatisfied
+                        <span class="emoji">😡</span> Very Dissatisfied
                     </label>
                 </div>
             </div>
             
             <div class="question-group">
-                <p><strong>Q2) Client service team</strong></p>
+                <p class="question-title"><span class="question-number">2</span>Client service team</p>
                 <div class="emoji-radio">
                     <input type="radio" id="q2_emoji_1" name="entry.77707608" value="1" required>
                     <label for="q2_emoji_1">
@@ -152,7 +350,7 @@
                     </label>
                     <input type="radio" id="q2_emoji_3" name="entry.77707608" value="3">
                     <label for="q2_emoji_3">
-                        <span class="emoji">😐</span> Neither satisfied
+                        <span class="emoji">😐</span> Neither
                     </label>
                     <input type="radio" id="q2_emoji_4" name="entry.77707608" value="4">
                     <label for="q2_emoji_4">
@@ -160,13 +358,13 @@
                     </label>
                     <input type="radio" id="q2_emoji_5" name="entry.77707608" value="5">
                     <label for="q2_emoji_5">
-                        <span class="emoji">😡</span> Very dissatisfied
+                        <span class="emoji">😡</span> Very Dissatisfied
                     </label>
                 </div>
             </div>
 
             <div class="question-group">
-                <p><strong>Q3) Timeliness - no unreasonable delay</strong></p>
+                <p class="question-title"><span class="question-number">3</span>Timeliness - no unreasonable delay</p>
                 <div class="emoji-radio">
                     <input type="radio" id="q3_emoji_1" name="entry.1355562660" value="1" required>
                     <label for="q3_emoji_1">
@@ -178,7 +376,7 @@
                     </label>
                     <input type="radio" id="q3_emoji_3" name="entry.1355562660" value="3">
                     <label for="q3_emoji_3">
-                        <span class="emoji">😐</span> Neither satisfied
+                        <span class="emoji">😐</span> Neither
                     </label>
                     <input type="radio" id="q3_emoji_4" name="entry.1355562660" value="4">
                     <label for="q3_emoji_4">
@@ -186,13 +384,13 @@
                     </label>
                     <input type="radio" id="q3_emoji_5" name="entry.1355562660" value="5">
                     <label for="q3_emoji_5">
-                        <span class="emoji">😡</span> Very dissatisfied
+                        <span class="emoji">😡</span> Very Dissatisfied
                     </label>
                 </div>
             </div>
             
             <div class="question-group" id="q4">
-                <p><strong>Q4) Accuracy of data file</strong></p>
+                <p class="question-title"><span class="question-number">4</span>Accuracy of data file</p>
                 <div class="emoji-radio">
                     <input type="radio" id="q4_emoji_1" name="entry.1430791495" value="1">
                     <label for="q4_emoji_1">
@@ -204,7 +402,7 @@
                     </label>
                     <input type="radio" id="q4_emoji_3" name="entry.1430791495" value="3">
                     <label for="q4_emoji_3">
-                        <span class="emoji">😐</span> Neither satisfied
+                        <span class="emoji">😐</span> Neither
                     </label>
                     <input type="radio" id="q4_emoji_4" name="entry.1430791495" value="4">
                     <label for="q4_emoji_4">
@@ -212,13 +410,13 @@
                     </label>
                     <input type="radio" id="q4_emoji_5" name="entry.1430791495" value="5">
                     <label for="q4_emoji_5">
-                        <span class="emoji">😡</span> Very dissatisfied
+                        <span class="emoji">😡</span> Very Dissatisfied
                     </label>
                 </div>
             </div>
 
             <div class="question-group" id="q5">
-                <p><strong>Q5) Actionable results</strong></p>
+                <p class="question-title"><span class="question-number">5</span>Actionable results</p>
                 <div class="emoji-radio">
                     <input type="radio" id="q5_emoji_1" name="entry.228333784" value="1">
                     <label for="q5_emoji_1">
@@ -230,7 +428,7 @@
                     </label>
                     <input type="radio" id="q5_emoji_3" name="entry.228333784" value="3">
                     <label for="q5_emoji_3">
-                        <span class="emoji">😐</span> Neither satisfied
+                        <span class="emoji">😐</span> Neither
                     </label>
                     <input type="radio" id="q5_emoji_4" name="entry.228333784" value="4">
                     <label for="q5_emoji_4">
@@ -238,13 +436,13 @@
                     </label>
                     <input type="radio" id="q5_emoji_5" name="entry.228333784" value="5">
                     <label for="q5_emoji_5">
-                        <span class="emoji">😡</span> Very dissatisfied
+                        <span class="emoji">😡</span> Very Dissatisfied
                     </label>
                 </div>
             </div>
 
             <div class="question-group" id="q6">
-                <p><strong>Q6) Presentation</strong></p>
+                <p class="question-title"><span class="question-number">6</span>Presentation</p>
                 <div class="emoji-radio">
                     <input type="radio" id="q6_emoji_1" name="entry.602056392" value="1">
                     <label for="q6_emoji_1">
@@ -256,7 +454,7 @@
                     </label>
                     <input type="radio" id="q6_emoji_3" name="entry.602056392" value="3">
                     <label for="q6_emoji_3">
-                        <span class="emoji">😐</span> Neither satisfied
+                        <span class="emoji">😐</span> Neither
                     </label>
                     <input type="radio" id="q6_emoji_4" name="entry.602056392" value="4">
                     <label for="q6_emoji_4">
@@ -264,22 +462,69 @@
                     </label>
                     <input type="radio" id="q6_emoji_5" name="entry.602056392" value="5">
                     <label for="q6_emoji_5">
-                        <span class="emoji">😡</span> Very dissatisfied
+                        <span class="emoji">😡</span> Very Dissatisfied
                     </label>
                 </div>
             </div>
             
             <div class="question-group">
-                <label for="suggestion">Q7) Do you have any other suggestions/comments that would help us make your next projects with us more satisfactory?</label>
-                <textarea id="suggestion" name="entry.1515032099" rows="4"></textarea>
+                <p class="question-title"><span class="question-number">7</span>Do you have any other suggestions/comments?</p>
+                <textarea id="suggestion" name="entry.1515032099" placeholder="พิมพ์ข้อสังเกตหรือคำแนะนำของคุณ..."></textarea>
             </div>
             
             <button type="submit">ส่งแบบสอบถาม</button>
+            <div class="success-message" id="successMessage">
+                ✓ ขอบคุณที่ตอบแบบสอบถาม!
+            </div>
             
         </form>
         <script>
+        // Initialize progress indicator
+        function initProgressIndicator() {
+            const totalQuestions = 7;
+            const progressContainer = document.getElementById('progressIndicator');
+            progressContainer.innerHTML = '';
+            
+            for (let i = 0; i < totalQuestions; i++) {
+                const step = document.createElement('div');
+                step.className = 'progress-step';
+                step.id = 'progress-step-' + (i + 1);
+                progressContainer.appendChild(step);
+            }
+        }
+
+        // Update progress based on form completion
+        function updateProgress() {
+            const form = document.getElementById('googleForm');
+            const requiredFields = form.querySelectorAll('[required]');
+            let completedCount = 0;
+
+            requiredFields.forEach((field, index) => {
+                if (field.type === 'radio' && field.checked) {
+                    completedCount++;
+                }
+            });
+
+            // Also check other answered questions
+            const allRadios = form.querySelectorAll('input[type="radio"]:checked');
+            completedCount = allRadios.length;
+
+            // Update progress steps
+            for (let i = 0; i < 7; i++) {
+                const step = document.getElementById('progress-step-' + (i + 1));
+                if (i < completedCount) {
+                    step.classList.add('active');
+                } else {
+                    step.classList.remove('active');
+                }
+            }
+        }
+
         // เมื่อหน้าเว็บโหลดเสร็จ
         window.onload = function() {
+            // Initialize
+            initProgressIndicator();
+
             // 1. ดึงค่าจาก URL
             const urlParams = new URLSearchParams(window.location.search);
             const projectNo = urlParams.get('project_no');
@@ -287,11 +532,9 @@
             const surveyType = urlParams.get('survey_type');
             const employeeEmail = urlParams.get('employee_email');
 
-             // ตรวจสอบว่ามี query parameters ที่ต้องใช้ส่งหรือไม่
+            // ตรวจสอบว่ามี query parameters ที่ต้องใช้ส่งหรือไม่
             if (window.location.search) {
-
                 // 2. กำหนดค่าที่ได้ให้กับช่อง input hidden ในฟอร์ม HTML
-                // *** และ ID ของ entry ใน input hidden ให้ตรงกับ Google Form ของคุณ
                 if (projectNo) {
                     document.getElementById('project_no_get').value = projectNo;
                 }
@@ -306,10 +549,7 @@
                 }
                 
                 if (window.history.replaceState) {
-                    // สร้าง URL ใหม่ที่ไม่เหลือ query string (?...)
                     const cleanUrl = window.location.pathname + window.location.hash;
-                    
-                    // แทนที่ history state ปัจจุบันด้วย URL ที่สะอาด
                     history.replaceState(null, document.title, cleanUrl);
                 }
 
@@ -322,13 +562,27 @@
                     document.getElementById('q5').style.display = 'none';
                     document.getElementById('q6').style.display = 'none';
                 }
-                // ทางเลือก: หากต้องการให้ฟอร์ม submit อัตโนมัติเมื่อโหลดหน้าเสร็จ
-                // document.getElementById('googleForm').submit();
             }
-             else {
-            // กรณีที่เปิดหน้าเว็บโดยไม่มีพารามิเตอร์
-            console.log("No parameters found in URL. Form not submitted automatically.");
+            else {
+                console.log("No parameters found in URL.");
             }
+
+            // Add event listeners for progress update
+            const form = document.getElementById('googleForm');
+            const allRadios = form.querySelectorAll('input[type="radio"]');
+            allRadios.forEach(radio => {
+                radio.addEventListener('change', updateProgress);
+            });
+
+            // Handle form submission
+            form.addEventListener('submit', function(e) {
+                // Show success message
+                setTimeout(() => {
+                    const successMessage = document.getElementById('successMessage');
+                    successMessage.style.display = 'block';
+                    document.body.style.overflow = 'hidden';
+                }, 500);
+            });
         };
     </script>
     </div>
