@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>แบบสอบถามความพึงพอใจโครงการ</title>
     
-    <!--<link rel="stylesheet" href="cdn.jsdelivr.net"> -->
+    <!-- ลิงก์เพื่อโหลด Google Material Symbols -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0..1,0" />
     <link rel="stylesheet" href="cdnjs.cloudflare.com">
     <style>
         * {
@@ -16,95 +17,118 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #ffffff;
+            background: linear-gradient(135deg, #D10000 0%, #A00000 100%);
             min-height: 100vh;
             padding: 20px;
             color: #000000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .survey-container {
-            max-width: 900px;
-            margin: 0 auto;
+            max-width: 500px;
+            width: 100%;
             background: white;
-            padding: 40px;
-            border-radius: 16px;
-            box-shadow: 0 20px 60px rgba(102, 129, 146, 0.15);
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
             overflow: hidden;
-            border-top: 5px solid rgb(217, 0, 0);
         }
 
         .survey-container img {
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             display: block;
+            width: 150px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         h2 {
-            color: #000000;
-            font-size: 28px;
-            margin-bottom: 10px;
+            color: #1a1a1a;
+            font-size: 26px;
+            margin-bottom: 12px;
             text-align: center;
+            font-weight: 700;
         }
 
         .subtitle {
             text-align: center;
             color: #666666;
             margin-bottom: 30px;
-            font-size: 14px;
+            font-size: 13px;
         }
 
         .progress-indicator {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
             padding: 0 10px;
+            gap: 8px;
         }
 
         .progress-step {
             flex: 1;
-            height: 4px;
-            background-color: #ecf0f1;
-            margin: 0 5px;
-            border-radius: 2px;
+            height: 6px;
+            background-color: #e0e0e0;
+            border-radius: 3px;
             transition: all 0.3s ease;
         }
 
         .progress-step.active {
-            background: rgb(217, 0, 0);
-            box-shadow: 0 2px 8px rgba(217, 0, 0, 0.4);
+            background: linear-gradient(90deg, #D10000 0%, #A00000 100%);
+            box-shadow: 0 2px 8px rgba(209, 0, 0, 0.4);
         }
 
         .question-group {
+            display: none;
             margin-bottom: 35px;
             padding: 0;
             border: none;
         }
 
-        .question-group:last-child {
-            border-bottom: none;
-            margin-bottom: 25px;
+        .question-group.active {
+            display: block;
+            animation: fadeIn 0.3s ease-in;
         }
 
         .question-title {
-            font-size: 16px;
-            font-weight: 600;
-            color: #000000;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 25px;
+            display: block;
+            text-align: center;
+        }
+
+        .question-title::before {
+            content: attr(data-question);
+            display: inline;
+            margin-right: 10px;
+            color: #999;
+            font-weight: 400;
+        }
+
+        .scale-description {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            font-size: 12px;
+            color: #555;
+            text-align: center;
+            line-height: 1.5;
+        }
+
+        .scale-description strong {
+            display: block;
+            color: #1a1a1a;
+            font-size: 13px;
+            margin-bottom: 8px;
         }
 
         .question-number {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background: rgb(217, 0, 0);
-            color: white;
-            font-weight: bold;
-            margin-right: 12px;
-            font-size: 14px;
+            display: none;
         }
 
         /* ซ่อน input จริงๆ */
@@ -115,15 +139,16 @@
         /* จัดสไตล์ให้กับ Label (ตัวอีโมจิ) */
         .emoji-radio {
             display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
+            flex-direction: row;
+            gap: 10px;
             justify-content: center;
             padding: 20px 0;
+            flex-wrap: wrap;
         }
 
         .emoji-radio label {
             cursor: pointer;
-            padding: 18px 20px;
+            padding: 15px 12px;
             border: 2px solid #e8e8e8;
             border-radius: 12px;
             display: flex;
@@ -132,20 +157,19 @@
             gap: 8px;
             background-color: #f8f9fa;
             transition: all 0.3s ease;
-            min-width: 100px;
             text-align: center;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 500;
             color: #333333;
-            flex: 1;
-            min-width: 80px;
+            flex: 0 1 auto;
+            min-width: 70px;
         }
 
         .emoji-radio label:hover {
-            border-color: rgb(217, 0, 0);
+            border-color: #D10000;
             background-color: #fff5f5;
-            transform: translateY(-3px);
-            box-shadow: 0 4px 12px rgba(217, 0, 0, 0.2);
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(209, 0, 0, 0.2);
         }
 
         /* สไตล์เมื่อเลือกแล้ว */
@@ -227,10 +251,110 @@
             color: #333333;
         }
 
-        /* สไตล์สำหรับขนาดอีโmoจิ */
         .emoji {
             font-size: 32px;
             line-height: 1;
+        }
+
+        /* Hide text after emoji, show only emoji and number */
+        .emoji-radio label {
+            font-size: 0;
+            padding: 12px 10px;
+            min-width: 60px;
+        }
+
+        .emoji-radio label .emoji {
+            font-size: 32px;
+        }
+
+        /* Show number label below emoji */
+        .emoji-radio input[value="1"] + label::after {
+            content: '1';
+            font-size: 11px;
+            color: #666;
+            font-weight: 600;
+            display: block;
+        }
+
+        .emoji-radio input[value="2"] + label::after {
+            content: '2';
+            font-size: 11px;
+            color: #666;
+            font-weight: 600;
+            display: block;
+        }
+
+        .emoji-radio input[value="3"] + label::after {
+            content: '3';
+            font-size: 11px;
+            color: #666;
+            font-weight: 600;
+            display: block;
+        }
+
+        .emoji-radio input[value="4"] + label::after {
+            content: '4';
+            font-size: 11px;
+            color: #666;
+            font-weight: 600;
+            display: block;
+        }
+
+        .emoji-radio input[value="5"] + label::after {
+            content: '5';
+            font-size: 11px;
+            color: #666;
+            font-weight: 600;
+            display: block;
+        }
+
+        /* Update number color when checked */
+        .emoji-radio input[type="radio"]:checked + label::after {
+            color: white;
+        }
+
+        /* Heart Rating System */
+        .rating-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            padding: 20px 0;
+        }
+
+        .rating-icon {
+            font-size: 48px;
+            cursor: pointer;
+            color: #ddd;
+            transition: all 0.3s ease;
+            user-select: none;
+            font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
+        }
+
+        .rating-icon:hover {
+            color: #D10000;
+            transform: scale(1.15);
+            font-variation-settings: "FILL" 0.5, "wght" 400, "GRAD" 0, "opsz" 48;
+        }
+
+        .rating-icon.filled {
+            color: #D10000;
+            font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 48;
+        }
+
+        /* Hidden radio for storing rating value */
+        .rating-value {
+            display: none;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         label[for^="suggestion"],
@@ -255,8 +379,8 @@
 
         textarea:focus {
             outline: none;
-            border-color: rgb(217, 0, 0);
-            box-shadow: 0 0 0 3px rgba(217, 0, 0, 0.1);
+            border-color: #D10000;
+            box-shadow: 0 0 0 3px rgba(209, 0, 0, 0.1);
         }
 
         textarea::placeholder {
@@ -265,27 +389,58 @@
 
         button {
             width: 100%;
-            background: rgb(217, 0, 0);
+            background: linear-gradient(135deg, #D10000 0%, #A00000 100%);
             color: white;
-            padding: 16px 20px;
+            padding: 14px 20px;
             border: none;
             border-radius: 12px;
             cursor: pointer;
-            font-size: 18px;
+            font-size: 15px;
             font-weight: 600;
             margin-top: 30px;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(217, 0, 0, 0.3);
+            box-shadow: 0 6px 20px rgba(209, 0, 0, 0.4);
         }
 
-        button:hover {
-            background: rgb(180, 0, 0);
+        button:hover:not(:disabled) {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(217, 0, 0, 0.5);
+            box-shadow: 0 10px 30px rgba(209, 0, 0, 0.6);
         }
 
-        button:active {
+        button:active:not(:disabled) {
             transform: translateY(0);
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .error-message {
+            display: none;
+            background: #fff3cd;
+            color: #856404;
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #ffc107;
+            font-size: 14px;
+        }
+
+        .error-message.show {
+            display: block;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* Responsive Design */
@@ -380,208 +535,173 @@
                 <input type="hidden" name="entry.39006750" id="survey_type_get">
                 <input type="hidden" name="entry.1684685543" id="employee_email_get">
             </div>
-            <div class="question-group">
-                <p class="question-title"><span class="question-number">1</span>Overall quality of product & service</p>
-                <div class="emoji-radio">
-                    <input type="radio" id="q1_emoji_1" name="entry.3997204" value="1" required>
-                    <label for="q1_emoji_1">
-                        <span class="emoji">😍</span> Very Satisfied
-                    </label>
-                    <input type="radio" id="q1_emoji_2" name="entry.3997204" value="2">
-                    <label for="q1_emoji_2">
-                        <span class="emoji">😀</span> Satisfied
-                    </label>
-                    <input type="radio" id="q1_emoji_3" name="entry.3997204" value="3">
-                    <label for="q1_emoji_3">
-                        <span class="emoji">😐</span> Neither
-                    </label>
-                    <input type="radio" id="q1_emoji_4" name="entry.3997204" value="4">
-                    <label for="q1_emoji_4">
-                        <span class="emoji">😟</span> Dissatisfied
-                    </label>
-                    <input type="radio" id="q1_emoji_5" name="entry.3997204" value="5">
-                    <label for="q1_emoji_5">
-                        <span class="emoji">😡</span> Very Dissatisfied
-                    </label>
+            <div class="question-group" id="q1">
+                <p class="question-title">Overall quality of product & service</p>
+                <div class="scale-description">
+                    <strong>Choose your satisfaction level:</strong>
+                    5 = Very Satisfied | 4 = Satisfied | 3 = Neither | 2 = Dissatisfied | 1 = Very Dissatisfied
+                </div>
+                <div class="error-message" id="errorMessage"></div>
+                <input type="hidden" name="entry.3997204" id="q1_value" value="">
+                <div class="rating-container" data-question="q1" data-field="entry.3997204">
+                    <span class="material-symbols-outlined rating-icon" data-rating="1">favorite</span>
+                    <span class="material-symbols-outlined rating-icon" data-rating="2">favorite</span>
+                    <span class="material-symbols-outlined rating-icon" data-rating="3">favorite</span>
+                    <span class="material-symbols-outlined rating-icon" data-rating="4">favorite</span>
+                    <span class="material-symbols-outlined rating-icon" data-rating="5">favorite</span>
                 </div>
             </div>
             
-            <div class="question-group">
-                <p class="question-title"><span class="question-number">2</span>Client service team</p>
-                <div class="emoji-radio">
-                    <input type="radio" id="q2_emoji_1" name="entry.77707608" value="1" required>
-                    <label for="q2_emoji_1">
-                        <span class="emoji">😍</span> Very Satisfied
-                    </label>
-                    <input type="radio" id="q2_emoji_2" name="entry.77707608" value="2">
-                    <label for="q2_emoji_2">
-                        <span class="emoji">😀</span> Satisfied
-                    </label>
-                    <input type="radio" id="q2_emoji_3" name="entry.77707608" value="3">
-                    <label for="q2_emoji_3">
-                        <span class="emoji">😐</span> Neither
-                    </label>
-                    <input type="radio" id="q2_emoji_4" name="entry.77707608" value="4">
-                    <label for="q2_emoji_4">
-                        <span class="emoji">😟</span> Dissatisfied
-                    </label>
-                    <input type="radio" id="q2_emoji_5" name="entry.77707608" value="5">
-                    <label for="q2_emoji_5">
-                        <span class="emoji">😡</span> Very Dissatisfied
-                    </label>
+            <div class="question-group" id="q2">
+                <p class="question-title">Client service team</p>
+                <div class="error-message" id="errorMessage"></div>
+                <input type="hidden" name="entry.77707608" id="q2_value" value="">
+                <div class="rating-container" data-question="q2" data-field="entry.77707608">
+                    <span class="material-symbols-outlined rating-icon" data-rating="1">favorite</span>
+                    <span class="material-symbols-outlined rating-icon" data-rating="2">favorite</span>
+                    <span class="material-symbols-outlined rating-icon" data-rating="3">favorite</span>
+                    <span class="material-symbols-outlined rating-icon" data-rating="4">favorite</span>
+                    <span class="material-symbols-outlined rating-icon" data-rating="5">favorite</span>
                 </div>
             </div>
 
-            <div class="question-group">
-                <p class="question-title"><span class="question-number">3</span>Timeliness - no unreasonable delay</p>
-                <div class="emoji-radio">
-                    <input type="radio" id="q3_emoji_1" name="entry.1355562660" value="1" required>
-                    <label for="q3_emoji_1">
-                        <span class="emoji">😍</span> Very Satisfied
-                    </label>
-                    <input type="radio" id="q3_emoji_2" name="entry.1355562660" value="2">
-                    <label for="q3_emoji_2">
-                        <span class="emoji">😀</span> Satisfied
-                    </label>
-                    <input type="radio" id="q3_emoji_3" name="entry.1355562660" value="3">
-                    <label for="q3_emoji_3">
-                        <span class="emoji">😐</span> Neither
-                    </label>
-                    <input type="radio" id="q3_emoji_4" name="entry.1355562660" value="4">
-                    <label for="q3_emoji_4">
-                        <span class="emoji">😟</span> Dissatisfied
-                    </label>
-                    <input type="radio" id="q3_emoji_5" name="entry.1355562660" value="5">
-                    <label for="q3_emoji_5">
-                        <span class="emoji">😡</span> Very Dissatisfied
-                    </label>
+            <div class="question-group" id="q3">
+                <p class="question-title">Timeliness - no unreasonable delay</p>
+                <div class="error-message" id="errorMessage"></div>
+                <input type="hidden" name="entry.1355562660" id="q3_value" value="">
+                <div class="rating-container" data-question="q3" data-field="entry.1355562660">
+                    <span class="material-symbols-outlined rating-icon" data-rating="1">favorite</span>
+                    <span class="material-symbols-outlined rating-icon" data-rating="2">favorite</span>
+                    <span class="material-symbols-outlined rating-icon" data-rating="3">favorite</span>
+                    <span class="material-symbols-outlined rating-icon" data-rating="4">favorite</span>
+                    <span class="material-symbols-outlined rating-icon" data-rating="5">favorite</span>
                 </div>
             </div>
             
             <div class="question-group" id="q4">
-                <p class="question-title"><span class="question-number">4</span>Accuracy of data file</p>
-                <div class="emoji-radio">
-                    <input type="radio" id="q4_emoji_1" name="entry.1430791495" value="1">
-                    <label for="q4_emoji_1">
-                        <span class="emoji">😍</span> Very Satisfied
-                    </label>
-                    <input type="radio" id="q4_emoji_2" name="entry.1430791495" value="2">
-                    <label for="q4_emoji_2">
-                        <span class="emoji">😀</span> Satisfied
-                    </label>
-                    <input type="radio" id="q4_emoji_3" name="entry.1430791495" value="3">
-                    <label for="q4_emoji_3">
-                        <span class="emoji">😐</span> Neither
-                    </label>
-                    <input type="radio" id="q4_emoji_4" name="entry.1430791495" value="4">
-                    <label for="q4_emoji_4">
-                        <span class="emoji">😟</span> Dissatisfied
-                    </label>
-                    <input type="radio" id="q4_emoji_5" name="entry.1430791495" value="5">
-                    <label for="q4_emoji_5">
-                        <span class="emoji">😡</span> Very Dissatisfied
-                    </label>
+                <p class="question-title">Accuracy of data file</p>
+                <div class="error-message" id="errorMessage"></div>
+                <input type="hidden" name="entry.1430791495" id="q4_value" value="">
+                <div class="rating-container" data-question="q4" data-field="entry.1430791495">
+                    <span class="material-symbols-outlined rating-icon" data-rating="1">favorite</span>
+                    <span class="material-symbols-outlined rating-icon" data-rating="2">favorite</span>
+                    <span class="material-symbols-outlined rating-icon" data-rating="3">favorite</span>
+                    <span class="material-symbols-outlined rating-icon" data-rating="4">favorite</span>
+                    <span class="material-symbols-outlined rating-icon" data-rating="5">favorite</span>
                 </div>
             </div>
 
             <div class="question-group" id="q5">
-                <p class="question-title"><span class="question-number">5</span>Actionable results</p>
-                <div class="emoji-radio">
-                    <input type="radio" id="q5_emoji_1" name="entry.228333784" value="1">
-                    <label for="q5_emoji_1">
-                        <span class="emoji">😍</span> Very Satisfied
-                    </label>
-                    <input type="radio" id="q5_emoji_2" name="entry.228333784" value="2">
-                    <label for="q5_emoji_2">
-                        <span class="emoji">😀</span> Satisfied
-                    </label>
-                    <input type="radio" id="q5_emoji_3" name="entry.228333784" value="3">
-                    <label for="q5_emoji_3">
-                        <span class="emoji">😐</span> Neither
-                    </label>
-                    <input type="radio" id="q5_emoji_4" name="entry.228333784" value="4">
-                    <label for="q5_emoji_4">
-                        <span class="emoji">😟</span> Dissatisfied
-                    </label>
-                    <input type="radio" id="q5_emoji_5" name="entry.228333784" value="5">
-                    <label for="q5_emoji_5">
-                        <span class="emoji">😡</span> Very Dissatisfied
-                    </label>
+                <p class="question-title">Actionable results</p>
+                <div class="error-message" id="errorMessage"></div>
+                <input type="hidden" name="entry.228333784" id="q5_value" value="">
+                <div class="rating-container" data-question="q5" data-field="entry.228333784">
+                    <span class="material-symbols-outlined rating-icon" data-rating="1">favorite</span>
+                    <span class="material-symbols-outlined rating-icon" data-rating="2">favorite</span>
+                    <span class="material-symbols-outlined rating-icon" data-rating="3">favorite</span>
+                    <span class="material-symbols-outlined rating-icon" data-rating="4">favorite</span>
+                    <span class="material-symbols-outlined rating-icon" data-rating="5">favorite</span>
                 </div>
             </div>
 
             <div class="question-group" id="q6">
-                <p class="question-title"><span class="question-number">6</span>Presentation</p>
-                <div class="emoji-radio">
-                    <input type="radio" id="q6_emoji_1" name="entry.602056392" value="1">
-                    <label for="q6_emoji_1">
-                        <span class="emoji">😍</span> Very Satisfied
-                    </label>
-                    <input type="radio" id="q6_emoji_2" name="entry.602056392" value="2">
-                    <label for="q6_emoji_2">
-                        <span class="emoji">😀</span> Satisfied
-                    </label>
-                    <input type="radio" id="q6_emoji_3" name="entry.602056392" value="3">
-                    <label for="q6_emoji_3">
-                        <span class="emoji">😐</span> Neither
-                    </label>
-                    <input type="radio" id="q6_emoji_4" name="entry.602056392" value="4">
-                    <label for="q6_emoji_4">
-                        <span class="emoji">😟</span> Dissatisfied
-                    </label>
-                    <input type="radio" id="q6_emoji_5" name="entry.602056392" value="5">
-                    <label for="q6_emoji_5">
-                        <span class="emoji">😡</span> Very Dissatisfied
-                    </label>
+                <p class="question-title">Presentation</p>
+                <div class="error-message" id="errorMessage"></div>
+                <input type="hidden" name="entry.602056392" id="q6_value" value="">
+                <div class="rating-container" data-question="q6" data-field="entry.602056392">
+                    <span class="material-symbols-outlined rating-icon" data-rating="1">favorite</span>
+                    <span class="material-symbols-outlined rating-icon" data-rating="2">favorite</span>
+                    <span class="material-symbols-outlined rating-icon" data-rating="3">favorite</span>
+                    <span class="material-symbols-outlined rating-icon" data-rating="4">favorite</span>
+                    <span class="material-symbols-outlined rating-icon" data-rating="5">favorite</span>
                 </div>
             </div>
             
-            <div class="question-group">
-                <p class="question-title"><span class="question-number">7</span>Do you have any other suggestions/comments?</p>
-                <textarea id="suggestion" name="entry.1515032099" placeholder="พิมพ์ข้อสังเกตหรือคำแนะนำของคุณ..."></textarea>
+            <div class="question-group" id="q7">
+                <p class="question-title">Do you have any other suggestions/comments?</p>
+                <textarea id="suggestion" name="entry.1515032099" placeholder="Type your suggestions here..."></textarea>
             </div>
             
-            <button type="submit">ส่งแบบสอบถาม</button>
+            <button type="button" id="nextBtn">Next</button>
+            <button type="submit" id="submitBtn" style="display:none;">Submit</button>
             <div class="success-message" id="successMessage">
-                ✓ ขอบคุณที่ตอบแบบสอบถาม!
+                ✓ Thank you for completing the survey!
             </div>
             
         </form>
         <script>
+        let currentQuestion = 1;
+        let totalQuestions = 7;
+        let visibleQuestions = [];
+
         // Initialize progress indicator
         function initProgressIndicator() {
-            const totalQuestions = 7;
             const progressContainer = document.getElementById('progressIndicator');
             progressContainer.innerHTML = '';
             
-            for (let i = 0; i < totalQuestions; i++) {
+            for (let i = 0; i < visibleQuestions.length; i++) {
                 const step = document.createElement('div');
                 step.className = 'progress-step';
-                step.id = 'progress-step-' + (i + 1);
+                step.id = 'progress-step-' + i;
                 progressContainer.appendChild(step);
             }
         }
 
-        // Update progress based on form completion
-        function updateProgress() {
-            const form = document.getElementById('googleForm');
-            const requiredFields = form.querySelectorAll('[required]');
-            let completedCount = 0;
-
-            requiredFields.forEach((field, index) => {
-                if (field.type === 'radio' && field.checked) {
-                    completedCount++;
-                }
+        // Show specific question
+        function showQuestion(questionNum) {
+            console.log('showQuestion called with:', questionNum);
+            console.log('visibleQuestions:', visibleQuestions);
+            
+            // Hide all questions
+            document.querySelectorAll('.question-group').forEach(q => {
+                q.classList.remove('active');
             });
 
-            // Also check other answered questions
-            const allRadios = form.querySelectorAll('input[type="radio"]:checked');
-            completedCount = allRadios.length;
+            // Show current question
+            const questionId = visibleQuestions[questionNum - 1];
+            console.log('Looking for element with id:', questionId);
+            const element = document.getElementById(questionId);
+            console.log('Element found:', element);
+            
+            if (element) {
+                element.classList.add('active');
+                
+                // Add question number prefix to title
+                const titleEl = element.querySelector('.question-title');
+                if (titleEl && questionNum < visibleQuestions.length) {
+                    // Only show number for rating questions, not for suggestions
+                    const prefix = questionNum + ' → ';
+                    if (!titleEl.textContent.startsWith(questionNum + ' →')) {
+                        const originalText = titleEl.textContent;
+                        titleEl.textContent = prefix + originalText;
+                    }
+                }
+            }
 
-            // Update progress steps
-            for (let i = 0; i < 7; i++) {
-                const step = document.getElementById('progress-step-' + (i + 1));
-                if (i < completedCount) {
+            // Update progress bar
+            updateProgressBar();
+
+            // Update button text
+            const nextBtn = document.getElementById('nextBtn');
+            const submitBtn = document.getElementById('submitBtn');
+            
+            if (questionNum === visibleQuestions.length) {
+                nextBtn.style.display = 'none';
+                submitBtn.style.display = 'block';
+            } else {
+                nextBtn.style.display = 'block';
+                submitBtn.style.display = 'none';
+            }
+
+            // Clear error message
+            clearErrorMessage();
+        }
+
+        // Update progress bar
+        function updateProgressBar() {
+            for (let i = 0; i < visibleQuestions.length; i++) {
+                const step = document.getElementById('progress-step-' + i);
+                if (i < currentQuestion - 1) {
                     step.classList.add('active');
                 } else {
                     step.classList.remove('active');
@@ -589,21 +709,66 @@
             }
         }
 
-        // เมื่อหน้าเว็บโหลดเสร็จ
-        window.onload = function() {
-            // Initialize
-            initProgressIndicator();
+        // Check if current question is answered
+        function isCurrentQuestionAnswered() {
+            const questionId = visibleQuestions[currentQuestion - 1];
+            let isAnswered = false;
 
-            // 1. ดึงค่าจาก URL
+            if (questionId === 'q7') {
+                // For textarea question
+                const textarea = document.getElementById('suggestion');
+                isAnswered = textarea.value.trim() !== '';
+            } else {
+                // For heart rating questions - check hidden input value
+                const hiddenInput = document.getElementById(questionId + '_value');
+                isAnswered = hiddenInput && hiddenInput.value !== '';
+            }
+
+            return isAnswered;
+        }
+
+        // Get name attribute based on question ID
+        function getNameAttribute(questionId) {
+            const nameMap = {
+                'q1': 'entry.3997204',
+                'q2': 'entry.77707608',
+                'q3': 'entry.1355562660',
+                'q4': 'entry.1430791495',
+                'q5': 'entry.228333784',
+                'q6': 'entry.602056392',
+                'q7': 'entry.1515032099'
+            };
+            return nameMap[questionId] || '';
+        }
+
+        // Show error message
+        function showErrorMessage(message) {
+            const errorDiv = document.querySelector('.question-group.active .error-message') || document.getElementById('errorMessage');
+            if (errorDiv) {
+                errorDiv.textContent = message;
+                errorDiv.classList.add('show');
+            }
+        }
+
+        // Clear error message
+        function clearErrorMessage() {
+            const errorDiv = document.querySelector('.error-message.show');
+            if (errorDiv) {
+                errorDiv.classList.remove('show');
+            }
+        }
+
+        // Next button handler
+        document.addEventListener('DOMContentLoaded', function() {
+            // 1. Get URL parameters
             const urlParams = new URLSearchParams(window.location.search);
             const projectNo = urlParams.get('project_no');
             const round = urlParams.get('round');
             const surveyType = urlParams.get('survey_type');
             const employeeEmail = urlParams.get('employee_email');
 
-            // ตรวจสอบว่ามี query parameters ที่ต้องใช้ส่งหรือไม่
+            // Set hidden inputs
             if (window.location.search) {
-                // 2. กำหนดค่าที่ได้ให้กับช่อง input hidden ในฟอร์ม HTML
                 if (projectNo) {
                     document.getElementById('project_no_get').value = projectNo;
                 }
@@ -622,37 +787,118 @@
                     history.replaceState(null, document.title, cleanUrl);
                 }
 
-                if(surveyType == "HOME_VISIT"){
-                    document.getElementById('q4').style.display = 'none';
-                    document.getElementById('q5').style.display = 'none';
-                    document.getElementById('q6').style.display = 'none';
+                // Handle survey type visibility
+                visibleQuestions = ['q1', 'q2', 'q3'];
+                
+                if (surveyType === "HOME_VISIT") {
+                    // Only show first 3 questions
+                    totalQuestions = 4; // 3 questions + suggestions
+                } else if (surveyType === "UP_TO_DATA") {
+                    visibleQuestions = ['q1', 'q2', 'q3', 'q4', 'q5'];
+                    totalQuestions = 6; // 5 questions + suggestions
+                } else {
+                    visibleQuestions = ['q1', 'q2', 'q3', 'q4', 'q5', 'q6'];
+                    totalQuestions = 7; // All 6 questions + suggestions
                 }
-                else if(surveyType == "UP_TO_DATA"){
-                    document.getElementById('q5').style.display = 'none';
-                    document.getElementById('q6').style.display = 'none';
-                }
-            }
-            else {
-                console.log("No parameters found in URL.");
+            } else {
+                visibleQuestions = ['q1', 'q2', 'q3', 'q4', 'q5', 'q6'];
+                totalQuestions = 7;
             }
 
-            // Add event listeners for progress update
-            const form = document.getElementById('googleForm');
-            const allRadios = form.querySelectorAll('input[type="radio"]');
-            allRadios.forEach(radio => {
-                radio.addEventListener('change', updateProgress);
+            // Add suggestions question to visible questions
+            visibleQuestions.push('q7');
+
+            // Initialize progress bar AFTER setting visibleQuestions
+            initProgressIndicator();
+
+            // Show first question
+            showQuestion(1);
+
+            // Heart Rating Click Handlers
+            document.querySelectorAll('.rating-container').forEach(container => {
+                const icons = container.querySelectorAll('.rating-icon');
+                const questionId = container.getAttribute('data-question');
+                const fieldName = container.getAttribute('data-field');
+                
+                icons.forEach((icon, index) => {
+                    icon.addEventListener('click', function() {
+                        const rating = index + 1; // 1-5
+                        
+                        // Remove filled class from all icons in this container
+                        icons.forEach(i => i.classList.remove('filled'));
+                        
+                        // Add filled class to clicked icon and all before it
+                        for (let i = 0; i <= index; i++) {
+                            icons[i].classList.add('filled');
+                        }
+                        
+                        // Update hidden input value
+                        document.getElementById(questionId + '_value').value = rating;
+                    });
+                    
+                    // Hover effect
+                    icon.addEventListener('mouseenter', function() {
+                        icons.forEach((i, i_index) => {
+                            if (i_index <= index) {
+                                i.classList.add('filled');
+                            } else {
+                                i.classList.remove('filled');
+                            }
+                        });
+                    });
+                });
+                
+                // Reset on mouse leave
+                container.addEventListener('mouseleave', function() {
+                    const currentValue = document.getElementById(questionId + '_value').value;
+                    icons.forEach((i, i_index) => {
+                        if (currentValue && i_index < currentValue) {
+                            i.classList.add('filled');
+                        } else if (!currentValue) {
+                            i.classList.remove('filled');
+                        }
+                    });
+                });
+            });
+
+            // Next button event
+            document.getElementById('nextBtn').addEventListener('click', function() {
+                if (isCurrentQuestionAnswered()) {
+                    if (currentQuestion < visibleQuestions.length) {
+                        currentQuestion++;
+                        showQuestion(currentQuestion);
+                    }
+                } else {
+                    showErrorMessage('⚠ Please make a selection');
+                }
             });
 
             // Handle form submission
-            form.addEventListener('submit', function(e) {
-                // Show success message
+            document.getElementById('googleForm').addEventListener('submit', function(e) {
+                if (!isCurrentQuestionAnswered() && visibleQuestions[currentQuestion - 1] === 'q7') {
+                    e.preventDefault();
+                    showErrorMessage('⚠ Please provide feedback or click submit');
+                    return;
+                }
+
                 setTimeout(() => {
                     const successMessage = document.getElementById('successMessage');
                     successMessage.style.display = 'block';
                     document.body.style.overflow = 'hidden';
                 }, 500);
             });
-        };
+
+            // Allow keyboard navigation
+            document.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    const activeQuestion = document.querySelector('.question-group.active');
+                    if (activeQuestion && !activeQuestion.querySelector('textarea')) {
+                        document.getElementById('nextBtn').click();
+                    }
+                }
+            });
+        });
+
     </script>
     </div>
 
