@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>แบบสอบถามความพึงพอใจโครงการ</title>
     
-    <!--<link rel="stylesheet" href="cdn.jsdelivr.net"> -->
+    <!-- ลิงก์เพื่อโหลด Google Material Symbols -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0..1,0" />
     <link rel="stylesheet" href="cdnjs.cloudflare.com">
     <style>
         * {
@@ -100,6 +101,14 @@
             text-align: center;
         }
 
+        .question-title::before {
+            content: attr(data-question);
+            display: inline;
+            margin-right: 10px;
+            color: #999;
+            font-weight: 400;
+        }
+
         .scale-description {
             background: #f5f5f5;
             padding: 15px;
@@ -130,34 +139,37 @@
         /* จัดสไตล์ให้กับ Label (ตัวอีโมจิ) */
         .emoji-radio {
             display: flex;
-            flex-direction: column;
-            gap: 16px;
+            flex-direction: row;
+            gap: 10px;
             justify-content: center;
             padding: 20px 0;
+            flex-wrap: wrap;
         }
 
         .emoji-radio label {
             cursor: pointer;
-            padding: 18px;
+            padding: 15px 12px;
             border: 2px solid #e8e8e8;
-            border-radius: 16px;
+            border-radius: 12px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             background-color: #f8f9fa;
             transition: all 0.3s ease;
             text-align: center;
-            font-size: 14px;
+            font-size: 12px;
             font-weight: 500;
             color: #333333;
+            flex: 0 1 auto;
+            min-width: 70px;
         }
 
         .emoji-radio label:hover {
             border-color: #D10000;
             background-color: #fff5f5;
-            transform: translateY(-4px);
-            box-shadow: 0 6px 20px rgba(209, 0, 0, 0.3);
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(209, 0, 0, 0.2);
         }
 
         /* สไตล์เมื่อเลือกแล้ว */
@@ -240,8 +252,98 @@
         }
 
         .emoji {
-            font-size: 40px;
+            font-size: 32px;
             line-height: 1;
+        }
+
+        /* Hide text after emoji, show only emoji and number */
+        .emoji-radio label {
+            font-size: 0;
+            padding: 12px 10px;
+            min-width: 60px;
+        }
+
+        .emoji-radio label .emoji {
+            font-size: 32px;
+        }
+
+        /* Show number label below emoji */
+        .emoji-radio input[value="1"] + label::after {
+            content: '1';
+            font-size: 11px;
+            color: #666;
+            font-weight: 600;
+            display: block;
+        }
+
+        .emoji-radio input[value="2"] + label::after {
+            content: '2';
+            font-size: 11px;
+            color: #666;
+            font-weight: 600;
+            display: block;
+        }
+
+        .emoji-radio input[value="3"] + label::after {
+            content: '3';
+            font-size: 11px;
+            color: #666;
+            font-weight: 600;
+            display: block;
+        }
+
+        .emoji-radio input[value="4"] + label::after {
+            content: '4';
+            font-size: 11px;
+            color: #666;
+            font-weight: 600;
+            display: block;
+        }
+
+        .emoji-radio input[value="5"] + label::after {
+            content: '5';
+            font-size: 11px;
+            color: #666;
+            font-weight: 600;
+            display: block;
+        }
+
+        /* Update number color when checked */
+        .emoji-radio input[type="radio"]:checked + label::after {
+            color: white;
+        }
+
+        /* Heart Rating System */
+        .rating-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            padding: 20px 0;
+        }
+
+        .rating-icon {
+            font-size: 48px;
+            cursor: pointer;
+            color: #ddd;
+            transition: all 0.3s ease;
+            user-select: none;
+            font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
+        }
+
+        .rating-icon:hover {
+            color: #D10000;
+            transform: scale(1.15);
+            font-variation-settings: "FILL" 0.5, "wght" 400, "GRAD" 0, "opsz" 48;
+        }
+
+        .rating-icon.filled {
+            color: #D10000;
+            font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 48;
+        }
+
+        /* Hidden radio for storing rating value */
+        .rating-value {
+            display: none;
         }
 
         @keyframes fadeIn {
@@ -440,157 +542,78 @@
                     5 = Very Satisfied | 4 = Satisfied | 3 = Neither | 2 = Dissatisfied | 1 = Very Dissatisfied
                 </div>
                 <div class="error-message" id="errorMessage"></div>
-                <div class="emoji-radio">
-                    <input type="radio" id="q1_emoji_1" name="entry.3997204" value="1" required>
-                    <label for="q1_emoji_1">
-                        <span class="emoji">😍</span> Very Satisfied
-                    </label>
-                    <input type="radio" id="q1_emoji_2" name="entry.3997204" value="2">
-                    <label for="q1_emoji_2">
-                        <span class="emoji">😀</span> Satisfied
-                    </label>
-                    <input type="radio" id="q1_emoji_3" name="entry.3997204" value="3">
-                    <label for="q1_emoji_3">
-                        <span class="emoji">😐</span> Neither
-                    </label>
-                    <input type="radio" id="q1_emoji_4" name="entry.3997204" value="4">
-                    <label for="q1_emoji_4">
-                        <span class="emoji">😟</span> Dissatisfied
-                    </label>
-                    <input type="radio" id="q1_emoji_5" name="entry.3997204" value="5">
-                    <label for="q1_emoji_5">
-                        <span class="emoji">😡</span> Very Dissatisfied
-                    </label>
+                <input type="hidden" name="entry.3997204" id="q1_value" value="">
+                <div class="rating-container" data-question="q1" data-field="entry.3997204">
+                    <span class="material-symbols-outlined rating-icon" data-rating="1">favorite</span>
+                    <span class="material-symbols-outlined rating-icon" data-rating="2">favorite</span>
+                    <span class="material-symbols-outlined rating-icon" data-rating="3">favorite</span>
+                    <span class="material-symbols-outlined rating-icon" data-rating="4">favorite</span>
+                    <span class="material-symbols-outlined rating-icon" data-rating="5">favorite</span>
                 </div>
             </div>
             
             <div class="question-group" id="q2">
                 <p class="question-title">Client service team</p>
-                <div class="emoji-radio">
-                    <input type="radio" id="q2_emoji_1" name="entry.77707608" value="1" required>
-                    <label for="q2_emoji_1">
-                        <span class="emoji">😍</span> Very Satisfied
-                    </label>
-                    <input type="radio" id="q2_emoji_2" name="entry.77707608" value="2">
-                    <label for="q2_emoji_2">
-                        <span class="emoji">😀</span> Satisfied
-                    </label>
-                    <input type="radio" id="q2_emoji_3" name="entry.77707608" value="3">
-                    <label for="q2_emoji_3">
-                        <span class="emoji">😐</span> Neither
-                    </label>
-                    <input type="radio" id="q2_emoji_4" name="entry.77707608" value="4">
-                    <label for="q2_emoji_4">
-                        <span class="emoji">😟</span> Dissatisfied
-                    </label>
-                    <input type="radio" id="q2_emoji_5" name="entry.77707608" value="5">
-                    <label for="q2_emoji_5">
-                        <span class="emoji">😡</span> Very Dissatisfied
-                    </label>
+                <div class="error-message" id="errorMessage"></div>
+                <input type="hidden" name="entry.77707608" id="q2_value" value="">
+                <div class="rating-container" data-question="q2" data-field="entry.77707608">
+                    <span class="material-symbols-outlined rating-icon" data-rating="1">favorite</span>
+                    <span class="material-symbols-outlined rating-icon" data-rating="2">favorite</span>
+                    <span class="material-symbols-outlined rating-icon" data-rating="3">favorite</span>
+                    <span class="material-symbols-outlined rating-icon" data-rating="4">favorite</span>
+                    <span class="material-symbols-outlined rating-icon" data-rating="5">favorite</span>
                 </div>
             </div>
 
             <div class="question-group" id="q3">
                 <p class="question-title">Timeliness - no unreasonable delay</p>
-                <div class="emoji-radio">
-                    <input type="radio" id="q3_emoji_1" name="entry.1355562660" value="1" required>
-                    <label for="q3_emoji_1">
-                        <span class="emoji">😍</span> Very Satisfied
-                    </label>
-                    <input type="radio" id="q3_emoji_2" name="entry.1355562660" value="2">
-                    <label for="q3_emoji_2">
-                        <span class="emoji">😀</span> Satisfied
-                    </label>
-                    <input type="radio" id="q3_emoji_3" name="entry.1355562660" value="3">
-                    <label for="q3_emoji_3">
-                        <span class="emoji">😐</span> Neither
-                    </label>
-                    <input type="radio" id="q3_emoji_4" name="entry.1355562660" value="4">
-                    <label for="q3_emoji_4">
-                        <span class="emoji">😟</span> Dissatisfied
-                    </label>
-                    <input type="radio" id="q3_emoji_5" name="entry.1355562660" value="5">
-                    <label for="q3_emoji_5">
-                        <span class="emoji">😡</span> Very Dissatisfied
-                    </label>
+                <div class="error-message" id="errorMessage"></div>
+                <input type="hidden" name="entry.1355562660" id="q3_value" value="">
+                <div class="rating-container" data-question="q3" data-field="entry.1355562660">
+                    <span class="material-symbols-outlined rating-icon" data-rating="1">favorite</span>
+                    <span class="material-symbols-outlined rating-icon" data-rating="2">favorite</span>
+                    <span class="material-symbols-outlined rating-icon" data-rating="3">favorite</span>
+                    <span class="material-symbols-outlined rating-icon" data-rating="4">favorite</span>
+                    <span class="material-symbols-outlined rating-icon" data-rating="5">favorite</span>
                 </div>
             </div>
             
             <div class="question-group" id="q4">
                 <p class="question-title">Accuracy of data file</p>
-                <div class="emoji-radio">
-                    <input type="radio" id="q4_emoji_1" name="entry.1430791495" value="1">
-                    <label for="q4_emoji_1">
-                        <span class="emoji">😍</span> Very Satisfied
-                    </label>
-                    <input type="radio" id="q4_emoji_2" name="entry.1430791495" value="2">
-                    <label for="q4_emoji_2">
-                        <span class="emoji">😀</span> Satisfied
-                    </label>
-                    <input type="radio" id="q4_emoji_3" name="entry.1430791495" value="3">
-                    <label for="q4_emoji_3">
-                        <span class="emoji">😐</span> Neither
-                    </label>
-                    <input type="radio" id="q4_emoji_4" name="entry.1430791495" value="4">
-                    <label for="q4_emoji_4">
-                        <span class="emoji">😟</span> Dissatisfied
-                    </label>
-                    <input type="radio" id="q4_emoji_5" name="entry.1430791495" value="5">
-                    <label for="q4_emoji_5">
-                        <span class="emoji">😡</span> Very Dissatisfied
-                    </label>
+                <div class="error-message" id="errorMessage"></div>
+                <input type="hidden" name="entry.1430791495" id="q4_value" value="">
+                <div class="rating-container" data-question="q4" data-field="entry.1430791495">
+                    <span class="material-symbols-outlined rating-icon" data-rating="1">favorite</span>
+                    <span class="material-symbols-outlined rating-icon" data-rating="2">favorite</span>
+                    <span class="material-symbols-outlined rating-icon" data-rating="3">favorite</span>
+                    <span class="material-symbols-outlined rating-icon" data-rating="4">favorite</span>
+                    <span class="material-symbols-outlined rating-icon" data-rating="5">favorite</span>
                 </div>
             </div>
 
             <div class="question-group" id="q5">
                 <p class="question-title">Actionable results</p>
-                <div class="emoji-radio">
-                    <input type="radio" id="q5_emoji_1" name="entry.228333784" value="1">
-                    <label for="q5_emoji_1">
-                        <span class="emoji">😍</span> Very Satisfied
-                    </label>
-                    <input type="radio" id="q5_emoji_2" name="entry.228333784" value="2">
-                    <label for="q5_emoji_2">
-                        <span class="emoji">😀</span> Satisfied
-                    </label>
-                    <input type="radio" id="q5_emoji_3" name="entry.228333784" value="3">
-                    <label for="q5_emoji_3">
-                        <span class="emoji">😐</span> Neither
-                    </label>
-                    <input type="radio" id="q5_emoji_4" name="entry.228333784" value="4">
-                    <label for="q5_emoji_4">
-                        <span class="emoji">😟</span> Dissatisfied
-                    </label>
-                    <input type="radio" id="q5_emoji_5" name="entry.228333784" value="5">
-                    <label for="q5_emoji_5">
-                        <span class="emoji">😡</span> Very Dissatisfied
-                    </label>
+                <div class="error-message" id="errorMessage"></div>
+                <input type="hidden" name="entry.228333784" id="q5_value" value="">
+                <div class="rating-container" data-question="q5" data-field="entry.228333784">
+                    <span class="material-symbols-outlined rating-icon" data-rating="1">favorite</span>
+                    <span class="material-symbols-outlined rating-icon" data-rating="2">favorite</span>
+                    <span class="material-symbols-outlined rating-icon" data-rating="3">favorite</span>
+                    <span class="material-symbols-outlined rating-icon" data-rating="4">favorite</span>
+                    <span class="material-symbols-outlined rating-icon" data-rating="5">favorite</span>
                 </div>
             </div>
 
             <div class="question-group" id="q6">
                 <p class="question-title">Presentation</p>
-                <div class="emoji-radio">
-                    <input type="radio" id="q6_emoji_1" name="entry.602056392" value="1">
-                    <label for="q6_emoji_1">
-                        <span class="emoji">😍</span> Very Satisfied
-                    </label>
-                    <input type="radio" id="q6_emoji_2" name="entry.602056392" value="2">
-                    <label for="q6_emoji_2">
-                        <span class="emoji">😀</span> Satisfied
-                    </label>
-                    <input type="radio" id="q6_emoji_3" name="entry.602056392" value="3">
-                    <label for="q6_emoji_3">
-                        <span class="emoji">😐</span> Neither
-                    </label>
-                    <input type="radio" id="q6_emoji_4" name="entry.602056392" value="4">
-                    <label for="q6_emoji_4">
-                        <span class="emoji">😟</span> Dissatisfied
-                    </label>
-                    <input type="radio" id="q6_emoji_5" name="entry.602056392" value="5">
-                    <label for="q6_emoji_5">
-                        <span class="emoji">😡</span> Very Dissatisfied
-                    </label>
+                <div class="error-message" id="errorMessage"></div>
+                <input type="hidden" name="entry.602056392" id="q6_value" value="">
+                <div class="rating-container" data-question="q6" data-field="entry.602056392">
+                    <span class="material-symbols-outlined rating-icon" data-rating="1">favorite</span>
+                    <span class="material-symbols-outlined rating-icon" data-rating="2">favorite</span>
+                    <span class="material-symbols-outlined rating-icon" data-rating="3">favorite</span>
+                    <span class="material-symbols-outlined rating-icon" data-rating="4">favorite</span>
+                    <span class="material-symbols-outlined rating-icon" data-rating="5">favorite</span>
                 </div>
             </div>
             
@@ -642,6 +665,17 @@
             
             if (element) {
                 element.classList.add('active');
+                
+                // Add question number prefix to title
+                const titleEl = element.querySelector('.question-title');
+                if (titleEl && questionNum < visibleQuestions.length) {
+                    // Only show number for rating questions, not for suggestions
+                    const prefix = questionNum + ' → ';
+                    if (!titleEl.textContent.startsWith(questionNum + ' →')) {
+                        const originalText = titleEl.textContent;
+                        titleEl.textContent = prefix + originalText;
+                    }
+                }
             }
 
             // Update progress bar
@@ -685,11 +719,9 @@
                 const textarea = document.getElementById('suggestion');
                 isAnswered = textarea.value.trim() !== '';
             } else {
-                // For radio questions
-                const form = document.getElementById('googleForm');
-                const nameAttr = getNameAttribute(questionId);
-                const radios = form.querySelectorAll(`input[name="${nameAttr}"]:checked`);
-                isAnswered = radios.length > 0;
+                // For heart rating questions - check hidden input value
+                const hiddenInput = document.getElementById(questionId + '_value');
+                isAnswered = hiddenInput && hiddenInput.value !== '';
             }
 
             return isAnswered;
@@ -781,6 +813,53 @@
 
             // Show first question
             showQuestion(1);
+
+            // Heart Rating Click Handlers
+            document.querySelectorAll('.rating-container').forEach(container => {
+                const icons = container.querySelectorAll('.rating-icon');
+                const questionId = container.getAttribute('data-question');
+                const fieldName = container.getAttribute('data-field');
+                
+                icons.forEach((icon, index) => {
+                    icon.addEventListener('click', function() {
+                        const rating = index + 1; // 1-5
+                        
+                        // Remove filled class from all icons in this container
+                        icons.forEach(i => i.classList.remove('filled'));
+                        
+                        // Add filled class to clicked icon and all before it
+                        for (let i = 0; i <= index; i++) {
+                            icons[i].classList.add('filled');
+                        }
+                        
+                        // Update hidden input value
+                        document.getElementById(questionId + '_value').value = rating;
+                    });
+                    
+                    // Hover effect
+                    icon.addEventListener('mouseenter', function() {
+                        icons.forEach((i, i_index) => {
+                            if (i_index <= index) {
+                                i.classList.add('filled');
+                            } else {
+                                i.classList.remove('filled');
+                            }
+                        });
+                    });
+                });
+                
+                // Reset on mouse leave
+                container.addEventListener('mouseleave', function() {
+                    const currentValue = document.getElementById(questionId + '_value').value;
+                    icons.forEach((i, i_index) => {
+                        if (currentValue && i_index < currentValue) {
+                            i.classList.add('filled');
+                        } else if (!currentValue) {
+                            i.classList.remove('filled');
+                        }
+                    });
+                });
+            });
 
             // Next button event
             document.getElementById('nextBtn').addEventListener('click', function() {
