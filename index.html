@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>แบบสอบถามความพึงพอใจโครงการ</title>
-    
+
     <!-- ลิงก์เพื่อโหลด Google Material Symbols -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0..1,0" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0..1,0" />
     <link rel="stylesheet" href="cdnjs.cloudflare.com">
     <style>
         * {
@@ -173,7 +175,7 @@
         }
 
         /* สไตล์เมื่อเลือกแล้ว */
-        .emoji-radio input[type="radio"]:checked + label {
+        .emoji-radio input[type="radio"]:checked+label {
             background: rgb(217, 0, 0);
             border-color: rgb(217, 0, 0);
             color: white;
@@ -183,69 +185,69 @@
         }
 
         /* สีเขียวสำหรับ Very Satisfied (1) และ Satisfied (2) */
-        .emoji-radio input[value="1"]:checked + label,
-        .emoji-radio input[value="2"]:checked + label {
+        .emoji-radio input[value="1"]:checked+label,
+        .emoji-radio input[value="2"]:checked+label {
             background: #28a745;
             border-color: #28a745;
             box-shadow: 0 8px 20px rgba(40, 167, 69, 0.4);
         }
 
         /* เมื่อเลือก (checked) แล้ว hover ยังคงแสดงสีที่เลือก */
-        .emoji-radio input[value="1"]:checked:hover + label,
-        .emoji-radio input[value="2"]:checked:hover + label {
+        .emoji-radio input[value="1"]:checked:hover+label,
+        .emoji-radio input[value="2"]:checked:hover+label {
             background: #28a745;
             border-color: #28a745;
             box-shadow: 0 8px 24px rgba(40, 167, 69, 0.5);
         }
 
         /* hover บนปุ่มที่ยังไม่เลือก */
-        .emoji-radio input[value="1"]:hover + label,
-        .emoji-radio input[value="2"]:hover + label {
+        .emoji-radio input[value="1"]:hover+label,
+        .emoji-radio input[value="2"]:hover+label {
             border-color: #28a745;
             background-color: #f0fdf4;
             color: #333333;
         }
 
         /* สีเทาสำหรับ Neither (3) */
-        .emoji-radio input[value="3"]:checked + label {
+        .emoji-radio input[value="3"]:checked+label {
             background: #6c757d;
             border-color: #6c757d;
             box-shadow: 0 8px 20px rgba(108, 117, 125, 0.4);
         }
 
         /* เมื่อเลือก (checked) แล้ว hover ยังคงแสดงสีที่เลือก */
-        .emoji-radio input[value="3"]:checked:hover + label {
+        .emoji-radio input[value="3"]:checked:hover+label {
             background: #6c757d;
             border-color: #6c757d;
             box-shadow: 0 8px 24px rgba(108, 117, 125, 0.5);
         }
 
         /* hover บนปุ่มที่ยังไม่เลือก */
-        .emoji-radio input[value="3"]:hover + label {
+        .emoji-radio input[value="3"]:hover+label {
             border-color: #6c757d;
             background-color: #f5f5f5;
             color: #333333;
         }
 
         /* สีแดงสำหรับ Dissatisfied (4) และ Very Dissatisfied (5) */
-        .emoji-radio input[value="4"]:checked + label,
-        .emoji-radio input[value="5"]:checked + label {
+        .emoji-radio input[value="4"]:checked+label,
+        .emoji-radio input[value="5"]:checked+label {
             background: #dc3545;
             border-color: #dc3545;
             box-shadow: 0 8px 20px rgba(220, 53, 69, 0.4);
         }
 
         /* เมื่อเลือก (checked) แล้ว hover ยังคงแสดงสีที่เลือก */
-        .emoji-radio input[value="4"]:checked:hover + label,
-        .emoji-radio input[value="5"]:checked:hover + label {
+        .emoji-radio input[value="4"]:checked:hover+label,
+        .emoji-radio input[value="5"]:checked:hover+label {
             background: #dc3545;
             border-color: #dc3545;
             box-shadow: 0 8px 24px rgba(220, 53, 69, 0.5);
         }
 
         /* hover บนปุ่มที่ยังไม่เลือก */
-        .emoji-radio input[value="4"]:hover + label,
-        .emoji-radio input[value="5"]:hover + label {
+        .emoji-radio input[value="4"]:hover+label,
+        .emoji-radio input[value="5"]:hover+label {
             border-color: #dc3545;
             background-color: #fff5f5;
             color: #333333;
@@ -268,7 +270,7 @@
         }
 
         /* Show number label below emoji */
-        .emoji-radio input[value="1"] + label::after {
+        .emoji-radio input[value="1"]+label::after {
             content: '1';
             font-size: 11px;
             color: #666;
@@ -276,7 +278,7 @@
             display: block;
         }
 
-        .emoji-radio input[value="2"] + label::after {
+        .emoji-radio input[value="2"]+label::after {
             content: '2';
             font-size: 11px;
             color: #666;
@@ -284,7 +286,7 @@
             display: block;
         }
 
-        .emoji-radio input[value="3"] + label::after {
+        .emoji-radio input[value="3"]+label::after {
             content: '3';
             font-size: 11px;
             color: #666;
@@ -292,7 +294,7 @@
             display: block;
         }
 
-        .emoji-radio input[value="4"] + label::after {
+        .emoji-radio input[value="4"]+label::after {
             content: '4';
             font-size: 11px;
             color: #666;
@@ -300,7 +302,7 @@
             display: block;
         }
 
-        .emoji-radio input[value="5"] + label::after {
+        .emoji-radio input[value="5"]+label::after {
             content: '5';
             font-size: 11px;
             color: #666;
@@ -309,7 +311,7 @@
         }
 
         /* Update number color when checked */
-        .emoji-radio input[type="radio"]:checked + label::after {
+        .emoji-radio input[type="radio"]:checked+label::after {
             color: white;
         }
 
@@ -321,6 +323,13 @@
             padding: 20px 0;
         }
 
+        .rating-icon-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+
         .rating-icon {
             font-size: 48px;
             cursor: pointer;
@@ -330,15 +339,35 @@
             font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
         }
 
+        .rating-number {
+            font-size: 14px;
+            font-weight: 600;
+            color: #999;
+            min-width: 20px;
+            text-align: center;
+            transition: color 0.3s ease;
+        }
+
         .rating-icon:hover {
             color: #D10000;
             transform: scale(1.15);
             font-variation-settings: "FILL" 0.5, "wght" 400, "GRAD" 0, "opsz" 48;
         }
 
+        .rating-icon:hover~.rating-number,
+        .rating-icon-wrapper:hover .rating-number {
+            color: #D10000;
+        }
+
         .rating-icon.filled {
             color: #D10000;
             font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 48;
+        }
+
+        .rating-icon.filled~.rating-number,
+        .rating-icon-wrapper.filled .rating-number {
+            color: #D10000;
+            font-weight: 700;
         }
 
         /* Hidden radio for storing rating value */
@@ -351,6 +380,7 @@
                 opacity: 0;
                 transform: translateY(10px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -437,6 +467,7 @@
                 opacity: 0;
                 transform: translateY(-10px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -518,16 +549,18 @@
         }
     </style>
 </head>
+
 <body>
 
     <div class="survey-container">
-        <img src="https://raw.githubusercontent.com/intage-thailand/client-satisfaction-survey/refs/heads/main/images/intage_logo.webp" style="width: 200px; height: auto;" alt="INTAGE logo">
+        <img src="https://raw.githubusercontent.com/intage-thailand/client-satisfaction-survey/refs/heads/main/images/intage_logo.webp"
+            style="width: 200px; height: auto;" alt="INTAGE logo">
         <h2>แบบสอบถามความพึงพอใจโครงการ</h2>
         <p class="subtitle">ขอบคุณที่สละเวลาให้ข้อมูลอันมีค่า</p>
-        
+
         <div class="progress-indicator" id="progressIndicator"></div>
-        
-        <form action="https://docs.google.com/forms/d/e/1FAIpQLSfiHlQu_-ZBFTG0k8Rq5ge32bgQ1I_on3X8rKj02UopV7Oa9Q/formResponse" method="POST" id="googleForm">
+
+        <form id="googleForm">
             <div class="question-group">
                 <!-- get data parameter  -->
                 <input type="hidden" name="entry.1041271350" id="project_no_get">
@@ -539,369 +572,512 @@
                 <p class="question-title">Overall quality of product & service</p>
                 <div class="scale-description">
                     <strong>Choose your satisfaction level:</strong>
-                    5 = Very Satisfied | 4 = Satisfied | 3 = Neither | 2 = Dissatisfied | 1 = Very Dissatisfied
+                    1 = Very Dissatisfied | 2 = Dissatisfied | 3 = Neither | 4 = Satisfied | 5 = Very Satisfied
                 </div>
                 <div class="error-message" id="errorMessage"></div>
                 <input type="hidden" name="entry.3997204" id="q1_value" value="">
                 <div class="rating-container" data-question="q1" data-field="entry.3997204">
-                    <span class="material-symbols-outlined rating-icon" data-rating="1">favorite</span>
-                    <span class="material-symbols-outlined rating-icon" data-rating="2">favorite</span>
-                    <span class="material-symbols-outlined rating-icon" data-rating="3">favorite</span>
-                    <span class="material-symbols-outlined rating-icon" data-rating="4">favorite</span>
-                    <span class="material-symbols-outlined rating-icon" data-rating="5">favorite</span>
+                    <div class="rating-icon-wrapper">
+                        <span class="material-symbols-outlined rating-icon" data-rating="1">favorite</span>
+                        <span class="rating-number">1</span>
+                    </div>
+                    <div class="rating-icon-wrapper">
+                        <span class="material-symbols-outlined rating-icon" data-rating="2">favorite</span>
+                        <span class="rating-number">2</span>
+                    </div>
+                    <div class="rating-icon-wrapper">
+                        <span class="material-symbols-outlined rating-icon" data-rating="3">favorite</span>
+                        <span class="rating-number">3</span>
+                    </div>
+                    <div class="rating-icon-wrapper">
+                        <span class="material-symbols-outlined rating-icon" data-rating="4">favorite</span>
+                        <span class="rating-number">4</span>
+                    </div>
+                    <div class="rating-icon-wrapper">
+                        <span class="material-symbols-outlined rating-icon" data-rating="5">favorite</span>
+                        <span class="rating-number">5</span>
+                    </div>
                 </div>
             </div>
-            
+
             <div class="question-group" id="q2">
                 <p class="question-title">Client service team</p>
+                <div class="scale-description">
+                    <strong>Choose your satisfaction level:</strong>
+                    1 = Very Dissatisfied | 2 = Dissatisfied | 3 = Neither | 4 = Satisfied | 5 = Very Satisfied
+                </div>
                 <div class="error-message" id="errorMessage"></div>
                 <input type="hidden" name="entry.77707608" id="q2_value" value="">
                 <div class="rating-container" data-question="q2" data-field="entry.77707608">
-                    <span class="material-symbols-outlined rating-icon" data-rating="1">favorite</span>
-                    <span class="material-symbols-outlined rating-icon" data-rating="2">favorite</span>
-                    <span class="material-symbols-outlined rating-icon" data-rating="3">favorite</span>
-                    <span class="material-symbols-outlined rating-icon" data-rating="4">favorite</span>
-                    <span class="material-symbols-outlined rating-icon" data-rating="5">favorite</span>
+                    <div class="rating-icon-wrapper">
+                        <span class="material-symbols-outlined rating-icon" data-rating="1">favorite</span>
+                        <span class="rating-number">1</span>
+                    </div>
+                    <div class="rating-icon-wrapper">
+                        <span class="material-symbols-outlined rating-icon" data-rating="2">favorite</span>
+                        <span class="rating-number">2</span>
+                    </div>
+                    <div class="rating-icon-wrapper">
+                        <span class="material-symbols-outlined rating-icon" data-rating="3">favorite</span>
+                        <span class="rating-number">3</span>
+                    </div>
+                    <div class="rating-icon-wrapper">
+                        <span class="material-symbols-outlined rating-icon" data-rating="4">favorite</span>
+                        <span class="rating-number">4</span>
+                    </div>
+                    <div class="rating-icon-wrapper">
+                        <span class="material-symbols-outlined rating-icon" data-rating="5">favorite</span>
+                        <span class="rating-number">5</span>
+                    </div>
                 </div>
             </div>
 
             <div class="question-group" id="q3">
                 <p class="question-title">Timeliness - no unreasonable delay</p>
+                <div class="scale-description">
+                    <strong>Choose your satisfaction level:</strong>
+                    1 = Very Dissatisfied | 2 = Dissatisfied | 3 = Neither | 4 = Satisfied | 5 = Very Satisfied
+                </div>
                 <div class="error-message" id="errorMessage"></div>
                 <input type="hidden" name="entry.1355562660" id="q3_value" value="">
                 <div class="rating-container" data-question="q3" data-field="entry.1355562660">
-                    <span class="material-symbols-outlined rating-icon" data-rating="1">favorite</span>
-                    <span class="material-symbols-outlined rating-icon" data-rating="2">favorite</span>
-                    <span class="material-symbols-outlined rating-icon" data-rating="3">favorite</span>
-                    <span class="material-symbols-outlined rating-icon" data-rating="4">favorite</span>
-                    <span class="material-symbols-outlined rating-icon" data-rating="5">favorite</span>
+                    <div class="rating-icon-wrapper">
+                        <span class="material-symbols-outlined rating-icon" data-rating="1">favorite</span>
+                        <span class="rating-number">1</span>
+                    </div>
+                    <div class="rating-icon-wrapper">
+                        <span class="material-symbols-outlined rating-icon" data-rating="2">favorite</span>
+                        <span class="rating-number">2</span>
+                    </div>
+                    <div class="rating-icon-wrapper">
+                        <span class="material-symbols-outlined rating-icon" data-rating="3">favorite</span>
+                        <span class="rating-number">3</span>
+                    </div>
+                    <div class="rating-icon-wrapper">
+                        <span class="material-symbols-outlined rating-icon" data-rating="4">favorite</span>
+                        <span class="rating-number">4</span>
+                    </div>
+                    <div class="rating-icon-wrapper">
+                        <span class="material-symbols-outlined rating-icon" data-rating="5">favorite</span>
+                        <span class="rating-number">5</span>
+                    </div>
                 </div>
             </div>
-            
+
             <div class="question-group" id="q4">
                 <p class="question-title">Accuracy of data file</p>
+                <div class="scale-description">
+                    <strong>Choose your satisfaction level:</strong>
+                    1 = Very Dissatisfied | 2 = Dissatisfied | 3 = Neither | 4 = Satisfied | 5 = Very Satisfied
+                </div>
                 <div class="error-message" id="errorMessage"></div>
                 <input type="hidden" name="entry.1430791495" id="q4_value" value="">
                 <div class="rating-container" data-question="q4" data-field="entry.1430791495">
-                    <span class="material-symbols-outlined rating-icon" data-rating="1">favorite</span>
-                    <span class="material-symbols-outlined rating-icon" data-rating="2">favorite</span>
-                    <span class="material-symbols-outlined rating-icon" data-rating="3">favorite</span>
-                    <span class="material-symbols-outlined rating-icon" data-rating="4">favorite</span>
-                    <span class="material-symbols-outlined rating-icon" data-rating="5">favorite</span>
+                    <div class="rating-icon-wrapper">
+                        <span class="material-symbols-outlined rating-icon" data-rating="1">favorite</span>
+                        <span class="rating-number">1</span>
+                    </div>
+                    <div class="rating-icon-wrapper">
+                        <span class="material-symbols-outlined rating-icon" data-rating="2">favorite</span>
+                        <span class="rating-number">2</span>
+                    </div>
+                    <div class="rating-icon-wrapper">
+                        <span class="material-symbols-outlined rating-icon" data-rating="3">favorite</span>
+                        <span class="rating-number">3</span>
+                    </div>
+                    <div class="rating-icon-wrapper">
+                        <span class="material-symbols-outlined rating-icon" data-rating="4">favorite</span>
+                        <span class="rating-number">4</span>
+                    </div>
+                    <div class="rating-icon-wrapper">
+                        <span class="material-symbols-outlined rating-icon" data-rating="5">favorite</span>
+                        <span class="rating-number">5</span>
+                    </div>
                 </div>
             </div>
 
             <div class="question-group" id="q5">
                 <p class="question-title">Actionable results</p>
+                <div class="scale-description">
+                    <strong>Choose your satisfaction level:</strong>
+                    1 = Very Dissatisfied | 2 = Dissatisfied | 3 = Neither | 4 = Satisfied | 5 = Very Satisfied
+                </div>
                 <div class="error-message" id="errorMessage"></div>
                 <input type="hidden" name="entry.228333784" id="q5_value" value="">
                 <div class="rating-container" data-question="q5" data-field="entry.228333784">
-                    <span class="material-symbols-outlined rating-icon" data-rating="1">favorite</span>
-                    <span class="material-symbols-outlined rating-icon" data-rating="2">favorite</span>
-                    <span class="material-symbols-outlined rating-icon" data-rating="3">favorite</span>
-                    <span class="material-symbols-outlined rating-icon" data-rating="4">favorite</span>
-                    <span class="material-symbols-outlined rating-icon" data-rating="5">favorite</span>
+                    <div class="rating-icon-wrapper">
+                        <span class="material-symbols-outlined rating-icon" data-rating="1">favorite</span>
+                        <span class="rating-number">1</span>
+                    </div>
+                    <div class="rating-icon-wrapper">
+                        <span class="material-symbols-outlined rating-icon" data-rating="2">favorite</span>
+                        <span class="rating-number">2</span>
+                    </div>
+                    <div class="rating-icon-wrapper">
+                        <span class="material-symbols-outlined rating-icon" data-rating="3">favorite</span>
+                        <span class="rating-number">3</span>
+                    </div>
+                    <div class="rating-icon-wrapper">
+                        <span class="material-symbols-outlined rating-icon" data-rating="4">favorite</span>
+                        <span class="rating-number">4</span>
+                    </div>
+                    <div class="rating-icon-wrapper">
+                        <span class="material-symbols-outlined rating-icon" data-rating="5">favorite</span>
+                        <span class="rating-number">5</span>
+                    </div>
                 </div>
             </div>
 
             <div class="question-group" id="q6">
                 <p class="question-title">Presentation</p>
+                <div class="scale-description">
+                    <strong>Choose your satisfaction level:</strong>
+                    1 = Very Dissatisfied | 2 = Dissatisfied | 3 = Neither | 4 = Satisfied | 5 = Very Satisfied
+                </div>
                 <div class="error-message" id="errorMessage"></div>
                 <input type="hidden" name="entry.602056392" id="q6_value" value="">
                 <div class="rating-container" data-question="q6" data-field="entry.602056392">
-                    <span class="material-symbols-outlined rating-icon" data-rating="1">favorite</span>
-                    <span class="material-symbols-outlined rating-icon" data-rating="2">favorite</span>
-                    <span class="material-symbols-outlined rating-icon" data-rating="3">favorite</span>
-                    <span class="material-symbols-outlined rating-icon" data-rating="4">favorite</span>
-                    <span class="material-symbols-outlined rating-icon" data-rating="5">favorite</span>
+                    <div class="rating-icon-wrapper">
+                        <span class="material-symbols-outlined rating-icon" data-rating="1">favorite</span>
+                        <span class="rating-number">1</span>
+                    </div>
+                    <div class="rating-icon-wrapper">
+                        <span class="material-symbols-outlined rating-icon" data-rating="2">favorite</span>
+                        <span class="rating-number">2</span>
+                    </div>
+                    <div class="rating-icon-wrapper">
+                        <span class="material-symbols-outlined rating-icon" data-rating="3">favorite</span>
+                        <span class="rating-number">3</span>
+                    </div>
+                    <div class="rating-icon-wrapper">
+                        <span class="material-symbols-outlined rating-icon" data-rating="4">favorite</span>
+                        <span class="rating-number">4</span>
+                    </div>
+                    <div class="rating-icon-wrapper">
+                        <span class="material-symbols-outlined rating-icon" data-rating="5">favorite</span>
+                        <span class="rating-number">5</span>
+                    </div>
                 </div>
             </div>
-            
+
             <div class="question-group" id="q7">
                 <p class="question-title">Do you have any other suggestions/comments?</p>
-                <textarea id="suggestion" name="entry.1515032099" placeholder="Type your suggestions here..."></textarea>
+                <textarea id="suggestion" name="entry.1515032099"
+                    placeholder="Type your suggestions here..."></textarea>
             </div>
-            
+
             <button type="button" id="nextBtn">Next</button>
             <button type="submit" id="submitBtn" style="display:none;">Submit</button>
             <div class="success-message" id="successMessage">
                 ✓ Thank you for completing the survey!
             </div>
-            
+
         </form>
         <script>
-        let currentQuestion = 1;
-        let totalQuestions = 7;
-        let visibleQuestions = [];
+            const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzFhDh-vE2q2XaxokvqcOyLXCJ-rVQxEQTne5qD80YVfIjOHMq2ZYOaKdVAem9T54hN/exec'; // <-- เปลี่ยนเป็น URL จริงของคุณ
+            const form = document.getElementById('googleForm'); // ตรวจสอบว่า ID ตรงกัน
+            let currentQuestion = 1;
+            let totalQuestions = 7;
+            let visibleQuestions = [];
 
-        // Initialize progress indicator
-        function initProgressIndicator() {
-            const progressContainer = document.getElementById('progressIndicator');
-            progressContainer.innerHTML = '';
-            
-            for (let i = 0; i < visibleQuestions.length; i++) {
-                const step = document.createElement('div');
-                step.className = 'progress-step';
-                step.id = 'progress-step-' + i;
-                progressContainer.appendChild(step);
+            // Initialize progress indicator
+            function initProgressIndicator() {
+                const progressContainer = document.getElementById('progressIndicator');
+                progressContainer.innerHTML = '';
+
+                for (let i = 0; i < visibleQuestions.length; i++) {
+                    const step = document.createElement('div');
+                    step.className = 'progress-step';
+                    step.id = 'progress-step-' + i;
+                    progressContainer.appendChild(step);
+                }
             }
-        }
 
-        // Show specific question
-        function showQuestion(questionNum) {
-            console.log('showQuestion called with:', questionNum);
-            console.log('visibleQuestions:', visibleQuestions);
-            
-            // Hide all questions
-            document.querySelectorAll('.question-group').forEach(q => {
-                q.classList.remove('active');
-            });
+            // Show specific question
+            function showQuestion(questionNum) {
+                console.log('showQuestion called with:', questionNum);
+                console.log('visibleQuestions:', visibleQuestions);
 
-            // Show current question
-            const questionId = visibleQuestions[questionNum - 1];
-            console.log('Looking for element with id:', questionId);
-            const element = document.getElementById(questionId);
-            console.log('Element found:', element);
-            
-            if (element) {
-                element.classList.add('active');
-                
-                // Add question number prefix to title
-                const titleEl = element.querySelector('.question-title');
-                if (titleEl && questionNum < visibleQuestions.length) {
-                    // Only show number for rating questions, not for suggestions
-                    const prefix = questionNum + ' → ';
-                    if (!titleEl.textContent.startsWith(questionNum + ' →')) {
-                        const originalText = titleEl.textContent;
-                        titleEl.textContent = prefix + originalText;
+                // Hide all questions
+                document.querySelectorAll('.question-group').forEach(q => {
+                    q.classList.remove('active');
+                });
+
+                // Show current question
+                const questionId = visibleQuestions[questionNum - 1];
+                console.log('Looking for element with id:', questionId);
+                const element = document.getElementById(questionId);
+                console.log('Element found:', element);
+
+                if (element) {
+                    element.classList.add('active');
+
+                    // Add question number prefix to title
+                    const titleEl = element.querySelector('.question-title');
+                    if (titleEl && questionNum < visibleQuestions.length) {
+                        // Only show number for rating questions, not for suggestions
+                        const prefix = questionNum + ' → ';
+                        if (!titleEl.textContent.startsWith(questionNum + ' →')) {
+                            const originalText = titleEl.textContent;
+                            titleEl.textContent = prefix + originalText;
+                        }
+                    }
+                }
+
+                // Update progress bar
+                updateProgressBar();
+
+                // Update button text
+                const nextBtn = document.getElementById('nextBtn');
+                const submitBtn = document.getElementById('submitBtn');
+
+                if (questionNum === visibleQuestions.length) {
+                    nextBtn.style.display = 'none';
+                    submitBtn.style.display = 'block';
+                } else {
+                    nextBtn.style.display = 'block';
+                    submitBtn.style.display = 'none';
+                }
+
+                // Clear error message
+                clearErrorMessage();
+            }
+
+            // Update progress bar
+            function updateProgressBar() {
+                for (let i = 0; i < visibleQuestions.length; i++) {
+                    const step = document.getElementById('progress-step-' + i);
+                    if (i < currentQuestion - 1) {
+                        step.classList.add('active');
+                    } else {
+                        step.classList.remove('active');
                     }
                 }
             }
 
-            // Update progress bar
-            updateProgressBar();
+            // Check if current question is answered
+            function isCurrentQuestionAnswered() {
+                const questionId = visibleQuestions[currentQuestion - 1];
+                let isAnswered = false;
 
-            // Update button text
-            const nextBtn = document.getElementById('nextBtn');
-            const submitBtn = document.getElementById('submitBtn');
-            
-            if (questionNum === visibleQuestions.length) {
-                nextBtn.style.display = 'none';
-                submitBtn.style.display = 'block';
-            } else {
-                nextBtn.style.display = 'block';
-                submitBtn.style.display = 'none';
+                if (questionId === 'q7') {
+                    // For textarea question
+                    /*const textarea = document.getElementById('suggestion');
+                    isAnswered = textarea.value.trim() !== '';*/
+                    isAnswered = true; // Always allow submission for suggestions
+                } else {
+                    // For heart rating questions - check hidden input value
+                    const hiddenInput = document.getElementById(questionId + '_value');
+                    isAnswered = hiddenInput && hiddenInput.value !== '';
+                }
+
+                return isAnswered;
+            }
+
+            // Get name attribute based on question ID
+            function getNameAttribute(questionId) {
+                const nameMap = {
+                    'q1': 'entry.3997204',
+                    'q2': 'entry.77707608',
+                    'q3': 'entry.1355562660',
+                    'q4': 'entry.1430791495',
+                    'q5': 'entry.228333784',
+                    'q6': 'entry.602056392',
+                    'q7': 'entry.1515032099'
+                };
+                return nameMap[questionId] || '';
+            }
+
+            // Show error message
+            function showErrorMessage(message) {
+                const errorDiv = document.querySelector('.question-group.active .error-message') || document.getElementById('errorMessage');
+                if (errorDiv) {
+                    errorDiv.textContent = message;
+                    errorDiv.classList.add('show');
+                }
             }
 
             // Clear error message
-            clearErrorMessage();
-        }
-
-        // Update progress bar
-        function updateProgressBar() {
-            for (let i = 0; i < visibleQuestions.length; i++) {
-                const step = document.getElementById('progress-step-' + i);
-                if (i < currentQuestion - 1) {
-                    step.classList.add('active');
-                } else {
-                    step.classList.remove('active');
+            function clearErrorMessage() {
+                const errorDiv = document.querySelector('.error-message.show');
+                if (errorDiv) {
+                    errorDiv.classList.remove('show');
                 }
             }
-        }
 
-        // Check if current question is answered
-        function isCurrentQuestionAnswered() {
-            const questionId = visibleQuestions[currentQuestion - 1];
-            let isAnswered = false;
+            // Next button handler
+            document.addEventListener('DOMContentLoaded', function () {
+                // 1. Get URL parameters
+                const urlParams = new URLSearchParams(window.location.search);
+                const projectNo = urlParams.get('project_no');
+                const round = urlParams.get('round');
+                const surveyType = urlParams.get('survey_type');
+                const employeeEmail = urlParams.get('employee_email');
 
-            if (questionId === 'q7') {
-                // For textarea question
-                /*const textarea = document.getElementById('suggestion');
-                isAnswered = textarea.value.trim() !== '';*/
-                isAnswered = true; // Always allow submission for suggestions
-            } else {
-                // For heart rating questions - check hidden input value
-                const hiddenInput = document.getElementById(questionId + '_value');
-                isAnswered = hiddenInput && hiddenInput.value !== '';
-            }
+                // Set hidden inputs
+                if (window.location.search) {
+                    if (projectNo) {
+                        document.getElementById('project_no_get').value = projectNo;
+                    }
+                    if (round) {
+                        document.getElementById('round_get').value = round;
+                    }
+                    if (surveyType) {
+                        document.getElementById('survey_type_get').value = surveyType;
+                    }
+                    if (employeeEmail) {
+                        document.getElementById('employee_email_get').value = employeeEmail;
+                    }
 
-            return isAnswered;
-        }
+                    if (window.history.replaceState) {
+                        const cleanUrl = window.location.pathname + window.location.hash;
+                        history.replaceState(null, document.title, cleanUrl);
+                    }
 
-        // Get name attribute based on question ID
-        function getNameAttribute(questionId) {
-            const nameMap = {
-                'q1': 'entry.3997204',
-                'q2': 'entry.77707608',
-                'q3': 'entry.1355562660',
-                'q4': 'entry.1430791495',
-                'q5': 'entry.228333784',
-                'q6': 'entry.602056392',
-                'q7': 'entry.1515032099'
-            };
-            return nameMap[questionId] || '';
-        }
+                    // Handle survey type visibility
+                    visibleQuestions = ['q1', 'q2', 'q3'];
 
-        // Show error message
-        function showErrorMessage(message) {
-            const errorDiv = document.querySelector('.question-group.active .error-message') || document.getElementById('errorMessage');
-            if (errorDiv) {
-                errorDiv.textContent = message;
-                errorDiv.classList.add('show');
-            }
-        }
-
-        // Clear error message
-        function clearErrorMessage() {
-            const errorDiv = document.querySelector('.error-message.show');
-            if (errorDiv) {
-                errorDiv.classList.remove('show');
-            }
-        }
-
-        // Next button handler
-        document.addEventListener('DOMContentLoaded', function() {
-            // 1. Get URL parameters
-            const urlParams = new URLSearchParams(window.location.search);
-            const projectNo = urlParams.get('project_no');
-            const round = urlParams.get('round');
-            const surveyType = urlParams.get('survey_type');
-            const employeeEmail = urlParams.get('employee_email');
-
-            // Set hidden inputs
-            if (window.location.search) {
-                if (projectNo) {
-                    document.getElementById('project_no_get').value = projectNo;
-                }
-                if (round) {
-                    document.getElementById('round_get').value = round;
-                }
-                if (surveyType) {
-                    document.getElementById('survey_type_get').value = surveyType;
-                }
-                if (employeeEmail) {
-                    document.getElementById('employee_email_get').value = employeeEmail;
-                }
-                
-                if (window.history.replaceState) {
-                    const cleanUrl = window.location.pathname + window.location.hash;
-                    history.replaceState(null, document.title, cleanUrl);
-                }
-
-                // Handle survey type visibility
-                visibleQuestions = ['q1', 'q2', 'q3'];
-                
-                if (surveyType === "HOME_VISIT") {
-                    // Only show first 3 questions
-                    totalQuestions = 4; // 3 questions + suggestions
-                } else if (surveyType === "UP_TO_DATA") {
-                    visibleQuestions = ['q1', 'q2', 'q3', 'q4'];
-                    totalQuestions = 5; // 4 questions + suggestions
+                    if (surveyType === "HOME_VISIT") {
+                        // Only show first 3 questions
+                        totalQuestions = 4; // 3 questions + suggestions
+                    } else if (surveyType === "UP_TO_DATA") {
+                        visibleQuestions = ['q1', 'q2', 'q3', 'q4'];
+                        totalQuestions = 5; // 4 questions + suggestions
+                    } else {
+                        visibleQuestions = ['q1', 'q2', 'q3', 'q4', 'q5', 'q6'];
+                        totalQuestions = 7; // All 6 questions + suggestions
+                    }
                 } else {
                     visibleQuestions = ['q1', 'q2', 'q3', 'q4', 'q5', 'q6'];
-                    totalQuestions = 7; // All 6 questions + suggestions
+                    totalQuestions = 7;
                 }
-            } else {
-                visibleQuestions = ['q1', 'q2', 'q3', 'q4', 'q5', 'q6'];
-                totalQuestions = 7;
-            }
 
-            // Add suggestions question to visible questions
-            visibleQuestions.push('q7');
+                // Add suggestions question to visible questions
+                visibleQuestions.push('q7');
 
-            // Initialize progress bar AFTER setting visibleQuestions
-            initProgressIndicator();
+                // Initialize progress bar AFTER setting visibleQuestions
+                initProgressIndicator();
 
-            // Show first question
-            showQuestion(1);
+                // Show first question
+                showQuestion(1);
 
-            // Heart Rating Click Handlers
-            document.querySelectorAll('.rating-container').forEach(container => {
-                const icons = container.querySelectorAll('.rating-icon');
-                const questionId = container.getAttribute('data-question');
-                const fieldName = container.getAttribute('data-field');
-                
-                icons.forEach((icon, index) => {
-                    icon.addEventListener('click', function() {
-                        const rating = index + 1; // 1-5
-                        
-                        // Remove filled class from all icons in this container
-                        icons.forEach(i => i.classList.remove('filled'));
-                        
-                        // Add filled class to clicked icon and all before it
-                        for (let i = 0; i <= index; i++) {
-                            icons[i].classList.add('filled');
-                        }
-                        
-                        // Update hidden input value
-                        document.getElementById(questionId + '_value').value = rating;
+                // Heart Rating Click Handlers
+                document.querySelectorAll('.rating-container').forEach(container => {
+                    const icons = container.querySelectorAll('.rating-icon');
+                    const questionId = container.getAttribute('data-question');
+                    const fieldName = container.getAttribute('data-field');
+
+                    icons.forEach((icon, index) => {
+                        icon.addEventListener('click', function () {
+                            const rating = index + 1; // 1-5
+
+                            // Remove filled class from all icons in this container
+                            icons.forEach(i => i.classList.remove('filled'));
+
+                            // Add filled class to clicked icon and all before it
+                            for (let i = 0; i <= index; i++) {
+                                icons[i].classList.add('filled');
+                            }
+
+                            // Update hidden input value
+                            document.getElementById(questionId + '_value').value = rating;
+                        });
+
+                        // Hover effect
+                        icon.addEventListener('mouseenter', function () {
+                            icons.forEach((i, i_index) => {
+                                if (i_index <= index) {
+                                    i.classList.add('filled');
+                                } else {
+                                    i.classList.remove('filled');
+                                }
+                            });
+                        });
                     });
-                    
-                    // Hover effect
-                    icon.addEventListener('mouseenter', function() {
+
+                    // Reset on mouse leave
+                    container.addEventListener('mouseleave', function () {
+                        const currentValue = document.getElementById(questionId + '_value').value;
                         icons.forEach((i, i_index) => {
-                            if (i_index <= index) {
+                            if (currentValue && i_index < currentValue) {
                                 i.classList.add('filled');
-                            } else {
+                            } else if (!currentValue) {
                                 i.classList.remove('filled');
                             }
                         });
                     });
                 });
-                
-                // Reset on mouse leave
-                container.addEventListener('mouseleave', function() {
-                    const currentValue = document.getElementById(questionId + '_value').value;
-                    icons.forEach((i, i_index) => {
-                        if (currentValue && i_index < currentValue) {
-                            i.classList.add('filled');
-                        } else if (!currentValue) {
-                            i.classList.remove('filled');
+
+                // Next button event
+                document.getElementById('nextBtn').addEventListener('click', function () {
+                    if (isCurrentQuestionAnswered()) {
+                        if (currentQuestion < visibleQuestions.length) {
+                            currentQuestion++;
+                            showQuestion(currentQuestion);
                         }
-                    });
+                    } else {
+                        showErrorMessage('⚠ Please make a selection');
+                    }
+                });
+
+                form.addEventListener('submit', function (e) {
+                    e.preventDefault(); // หยุดการทำงาน submit แบบปกติของ HTML form
+
+                    // ส่วน Validation เดิมของคุณ (รักษาไว้เพื่อตรวจสอบข้อมูลก่อนส่ง)
+                    if (!isCurrentQuestionAnswered() && visibleQuestions[currentQuestion - 1] === 'q7') {
+                        showErrorMessage('⚠ Please provide feedback or click submit');
+                        return;
+                    }
+
+                    // เตรียมข้อมูลฟอร์มด้วย FormData API
+                    const formData = new FormData(form);
+
+                    // ใช้ fetch API ส่งข้อมูลไปยัง Apps Script
+                    fetch(SCRIPT_URL, {
+                        method: 'POST', // ต้องเป็น POST method
+                        body: formData, // ส่งข้อมูลฟอร์มที่เตรียมไว้
+                    })
+                        .then(response => {
+                            // ตรวจสอบสถานะการตอบกลับ ถ้าสำเร็จจะเข้า .then นี้
+                            if (response.ok) {
+                                // 1. วิธี Redirect ไปหน้าอื่นทันที
+                                setTimeout(function () {
+                                    window.location.href = 'https://www.intage-thailand.com/';
+                                }, 5000);
+
+                                // 2. วิธีแสดงข้อความสำเร็จในหน้าเดิม (แทนที่ Redirect)
+                                const successMessage = document.getElementById('successMessage');
+                                successMessage.style.display = 'block';
+                                document.body.style.overflow = 'hidden';
+
+                                // ล้างฟอร์ม (ถ้าจำเป็นและไม่ Redirect)
+                                // form.reset(); 
+                            } else {
+                                // กรณีเซิร์ฟเวอร์ตอบกลับแต่มี error (เช่น 404, 500)
+                                throw new Error('Server response not ok');
+                            }
+                        })
+                        .catch(error => {
+                            // กรณีเกิดข้อผิดพลาดในการ fetch (เช่น Network error, CORS error)
+                            console.error('Error submitting form:', error);
+                            alert('เกิดข้อผิดพลาดในการส่งข้อมูล กรุณาลองใหม่อีกครั้ง');
+                        });
+                });
+
+                // Allow keyboard navigation
+                document.addEventListener('keypress', function (e) {
+                    if (e.key === 'Enter') {
+                        const activeQuestion = document.querySelector('.question-group.active');
+                        if (activeQuestion && !activeQuestion.querySelector('textarea')) {
+                            document.getElementById('nextBtn').click();
+                        }
+                    }
                 });
             });
 
-            // Next button event
-            document.getElementById('nextBtn').addEventListener('click', function() {
-                if (isCurrentQuestionAnswered()) {
-                    if (currentQuestion < visibleQuestions.length) {
-                        currentQuestion++;
-                        showQuestion(currentQuestion);
-                    }
-                } else {
-                    showErrorMessage('⚠ Please make a selection');
-                }
-            });
-
-            // Handle form submission
-            document.getElementById('googleForm').addEventListener('submit', function(e) {
-                if (!isCurrentQuestionAnswered() && visibleQuestions[currentQuestion - 1] === 'q7') {
-                    e.preventDefault();
-                    showErrorMessage('⚠ Please provide feedback or click submit');
-                    return;
-                }
-
-                setTimeout(() => {
-                    const successMessage = document.getElementById('successMessage');
-                    successMessage.style.display = 'block';
-                    document.body.style.overflow = 'hidden';
-                }, 500);
-            });
-
-            // Allow keyboard navigation
-            document.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    const activeQuestion = document.querySelector('.question-group.active');
-                    if (activeQuestion && !activeQuestion.querySelector('textarea')) {
-                        document.getElementById('nextBtn').click();
-                    }
-                }
-            });
-        });
-
-    </script>
+        </script>
     </div>
 
 </body>
+
 </html>
