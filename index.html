@@ -716,8 +716,9 @@
 
             if (questionId === 'q7') {
                 // For textarea question
-                const textarea = document.getElementById('suggestion');
-                isAnswered = textarea.value.trim() !== '';
+                /*const textarea = document.getElementById('suggestion');
+                isAnswered = textarea.value.trim() !== '';*/
+                isAnswered = true; // Always allow submission for suggestions
             } else {
                 // For heart rating questions - check hidden input value
                 const hiddenInput = document.getElementById(questionId + '_value');
