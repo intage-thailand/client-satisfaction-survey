@@ -963,9 +963,11 @@
 
                 if (missingParams.length > 0) {
                     // แสดง Alert แจ้งเตือน (หรือจะใช้หน้าจอขาวๆ สวยๆ ก็ได้)
-                    alert('Invalid access: Missing information value. Redirecting...');
-                    window.location.href = 'https://www.intage-thailand.com/';
-                    return; // หยุดการทำงานส่วนที่เหลือทั้งหมด
+                    alert('Invalid access: Missing information value. In 5 seconds, the system will redirect you to the company\'s website.');
+                    setTimeout(function () {
+                        window.location.href = 'https://www.intage-thailand.com/';
+                    }, 5000);
+                    return;
                 }
                 // ----------------------------
 
@@ -1111,9 +1113,9 @@
                                 successMessage.style.display = 'block';
                                 submitBtn.style.display = 'none'; // ซ่อนปุ่มไปเลยหลังส่งสำเร็จ
 
-                                setTimeout(function () {
+                                /*setTimeout(function () {
                                     window.location.href = 'https://www.intage-thailand.com/';
-                                }, 5000); // รอ 1 วินาทีก่อนเปลี่ยนหน้า
+                                }, 5000);*/ // รอ 1 วินาทีก่อนเปลี่ยนหน้า
                             } else {
                                 throw new Error('Server response not ok');
                             }
