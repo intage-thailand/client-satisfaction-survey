@@ -574,6 +574,26 @@
             border-radius: 8px;
             margin-top: 20px;
         }
+
+        #visitWebsiteBtn {
+            display: none;
+            background: linear-gradient(90deg, #D10000 0%, #A00000 100%);
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 14px 28px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 20px;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        #visitWebsiteBtn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(209, 0, 0, 0.3);
+        }
     </style>
 </head>
 
@@ -805,6 +825,7 @@
             <button type="submit" id="submitBtn" style="display:none;">Submit</button>
             <div class="success-message" id="successMessage">
                 ✓ Thank you for completing the survey!
+                <button type="button" id="visitWebsiteBtn" onclick="window.open('https://www.intage-thailand.com/', '_blank')">Visit Company Website</button>
             </div>
 
         </form>
@@ -958,15 +979,42 @@
                 const urlParams = new URLSearchParams(window.location.search);
 
                 // --- ส่วนตรวจสอบ Parameter ---
-                const requiredParams = ['project_no', 'round', 'survey_type'];
+                const requiredParams = ['project_no', 'round', 'survey_type', 'employee_email'];
                 const missingParams = requiredParams.filter(param => !urlParams.get(param));
 
                 if (missingParams.length > 0) {
-                    // แสดง Alert แจ้งเตือน (หรือจะใช้หน้าจอขาวๆ สวยๆ ก็ได้)
-                    alert('Invalid access: Missing information value. In 5 seconds, the system will redirect you to the company\'s website.');
-                    setTimeout(function () {
-                        window.location.href = 'https://www.intage-thailand.com/';
-                    }, 5000);
+                    // ซ่อนฟอร์มและองค์ประกอบทั้งหมด
+                    document.querySelectorAll('.question-group').forEach(q => {
+                        q.style.display = 'none';
+                    });
+                    document.getElementById('progressIndicator').style.display = 'none';
+                    document.getElementById('nextBtn').style.display = 'none';
+                    document.getElementById('submitBtn').style.display = 'none';
+                    document.getElementById('first-page').style.display = 'none';
+                    document.getElementById('second-page').style.display = 'none';
+
+                    // แสดง error message และปุ่ม Visit Company Website
+                    const errorContainer = document.createElement('div');
+                    errorContainer.style.cssText = 'text-align: center; padding: 40px 20px; background-color: #fff3cd; color: #856404; border-radius: 8px; margin-top: 20px;';
+                    errorContainer.innerHTML = '<h3 style="margin-bottom: 15px; font-size: 20px;">Invalid Request</h3><p style="margin-bottom: 25px; font-size: 15px;">The required information could not be loaded. Please return to our homepage.</p>';
+                    
+                    const visitBtn = document.createElement('button');
+                    visitBtn.textContent = 'Visit Company Website';
+                    visitBtn.style.cssText = 'background: linear-gradient(90deg, #D10000 0%, #A00000 100%); color: white; font-size: 16px; font-weight: 600; padding: 14px 28px; border: none; border-radius: 8px; cursor: pointer; margin-top: 10px; width: 100%; transition: all 0.3s ease;';
+                    visitBtn.onmouseover = function() {
+                        this.style.transform = 'translateY(-2px)';
+                        this.style.boxShadow = '0 8px 20px rgba(209, 0, 0, 0.3)';
+                    };
+                    visitBtn.onmouseout = function() {
+                        this.style.transform = 'translateY(0)';
+                        this.style.boxShadow = 'none';
+                    };
+                    visitBtn.onclick = function() {
+                        window.open('https://www.intage-thailand.com/', '_blank');
+                    };
+                    
+                    errorContainer.appendChild(visitBtn);
+                    document.querySelector('.survey-container').appendChild(errorContainer);
                     return;
                 }
                 // ----------------------------
@@ -1108,10 +1156,21 @@
                     })
                         .then(response => {
                             if (response.ok) {
+                                // ซ่อนคำถามและคำตอบ
+                                document.querySelectorAll('.question-group').forEach(q => {
+                                    q.style.display = 'none';
+                                });
+                                document.getElementById('progressIndicator').style.display = 'none';
+                                document.getElementById('first-page').style.display = 'none';
+                                document.getElementById('second-page').style.display = 'none';
+
                                 // แสดงข้อความสำเร็จ
                                 const successMessage = document.getElementById('successMessage');
                                 successMessage.style.display = 'block';
                                 submitBtn.style.display = 'none'; // ซ่อนปุ่มไปเลยหลังส่งสำเร็จ
+                                
+                                // แสดงปุ่ม Visit Company Website
+                                document.getElementById('visitWebsiteBtn').style.display = 'block';
 
                                 /*setTimeout(function () {
                                     window.location.href = 'https://www.intage-thailand.com/';
